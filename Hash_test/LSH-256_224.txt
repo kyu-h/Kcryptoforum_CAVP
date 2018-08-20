@@ -1,0 +1,7 @@
+Algo_ID = LSH-512_384
+Message = 5
+"M6OONFuk9m"
+"M6OONFuk9mc2r5JXM5S2"
+"M6OONFuk9mc2r5JXM5S2gkseTPuwnb"
+"M6OONFuk9mc2r5JXM5S2gkseTPuwnbL1d3FB0olF"
+"M6OONFuk9mc2r5JXM5S2gkseTPuwnbL1d3FB0olF7vMMphcwII"
