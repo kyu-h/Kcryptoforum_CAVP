@@ -57,8 +57,6 @@ function createFile256_224_(){
     fWrite.write("\r\n");
 
     fWrite.close();
-
-    document.getElementById("txtInput").innerHTML="저장되었습니다.";
 }
 
 function createFile256_256_(){
@@ -120,8 +118,6 @@ function createFile256_256_(){
     fWrite.write("\r\n");
 
     fWrite.close();
-
-    document.getElementById("txtInput").innerHTML="저장되었습니다.";
 }
 
 function createFile512_224_(){
@@ -183,8 +179,6 @@ function createFile512_224_(){
     fWrite.write("\r\n");
 
     fWrite.close();
-
-    document.getElementById("txtInput").innerHTML="저장되었습니다.";
 }
 
 function createFile512_256_(){
@@ -246,8 +240,6 @@ function createFile512_256_(){
     fWrite.write("\r\n");
 
     fWrite.close();
-
-    document.getElementById("txtInput").innerHTML="저장되었습니다.";
 }
 
 function createFile512_384_(){
@@ -309,8 +301,6 @@ function createFile512_384_(){
     fWrite.write("\r\n");
 
     fWrite.close();
-
-    document.getElementById("txtInput").innerHTML="저장되었습니다.";
 }
 
 function createFile512_512_(){
@@ -372,10 +362,4 @@ function createFile512_512_(){
     fWrite.write("\r\n");
 
     fWrite.close();
-
-    document.getElementById("txtInput").innerHTML="저장되었습니다.";
-}
-
-function aa(){
-    console.log("aaa");
 }

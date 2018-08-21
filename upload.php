@@ -28,7 +28,7 @@
             
             <td>
                 <div id="POP_LSH">
-                    <input type="radio" name="bits" value="256_224"> 256_224<br>
+                    <input type="radio" name="bits" value="256_224" checked="checked"> 256_224<br>
                     <input type="radio" name="bits" value="256_256"> 256_256<br>
                     <input type="radio" name="bits" value="512_224"> 512_224<br>
                     <input type="radio" name="bits" value="512_256"> 512_256<br>
@@ -37,7 +37,7 @@
                 </div>
                 
                 <div id="POP_LEA" style="display: none;">
-                    <input type="radio" name="bits" value="224"> 224<br>
+                    <input type="radio" name="bits" value="224" checked="checked"> 224<br>
                     <input type="radio" name="bits" value="256"> 256<br>
                     <input type="radio" name="bits" value="384"> 384<br>
                     <input type="radio" name="bits" value="512"> 512
@@ -52,6 +52,8 @@
         
         <br><br>
     
+        <p id="demo">파일은 모두 압축 후 압축 파일 '.zip'를 올려주시기 바랍니다. 만약 header file이 포함 된 파일의 경우 header file도 올리셔야합니다. </p>
+    
         <form name="uploadForm" id="uploadForm" method="post" action="upload_process.php" enctype="multipart/form-data" onsubmit="return formSubmit(this);">
             <div>
                 <label for="upfile">첨부파일</label>
@@ -59,99 +61,11 @@
             </div>
             <input type="submit" value="업로드" />
         </form>
-        
-        <!--<form action="main.php" method="POST" enctype="multipart/form-data">
-            File : 
-            <input type="file" name="image"> 
-            <input type="submit" value="Upload">
-        </form>
-        
-        <form name="uploadForm" id="uploadForm" method="post" action="upload_process.php" enctype="multipart/form-data" onsubmit="return formSubmit(this);">
-            <div>
-                <label for="upfile">첨부파일</label>
-                <input type="file" name="upfile" id="upfile" />
-            </div>
-            <input type="submit" value="업로드" />
-        </form>-->
-        
-        <br>
-
-        <?php
-        //include('pclzip.lib.php'); 
-        
-        /*$con = mysqli_connect("localhost","root","123123","my_db") or die(mysqli_connect_error());
-
-        $file = $_FILES['image']['tmp_name'];
-        if(!isset($file)) {
-            echo "Please select an image. \n";
-        }
-        else {
-            $image_data = addslashes(file_get_contents($_FILES['image']['tmp_name']));
-            $image_name = addslashes($_FILES['image']['name']);
-            $image_size = getimagesize($_FILES['image']['tmp_name']);
-
-            if($image_size == FALSE) {
-                echo "That's not an image.";
-            }
-            else {
-
-            }    
-            $sql = "INSERT INTO images VALUES(NULL,'$image_name','$image_data')" ;
-
-            if ( !mysqli_query($con,$sql) ) {
-                echo "Problem in uploading image !." . mysqli_error($con);
-            }
-            else {
-                echo "<p> Your upload file is : $image_name </p>";
-            }
-            
-        }
-        
-        echo "\n";*/
-        
-        
-        /*putenv("PATH=C:\\Program Files (x86)\\mingw-w64\\i686-7.3.0-posix-dwarf-rt_v5-rev0\\mingw32\\bin");
-
-        for($i = 0; $i < count($Carray); $i++){
-            shell_exec("gcc -c" . $list[$i][filename]);
-        }
-        
-        shell_exec("gcc -o main.exe main.o lsh.o lsh256.o lsh512.o");
-
-        shell_exec("main.exe");*/
-        
-        
-        
-        //**********압축 풀기************//
-        
-        /*$zipfile = new PclZip('test.zip');
-        
-        $extract = $zipfile->extract(PCLZIP_OPT_PATH, './extract/');
-        
-        if(!empty($extract)){
-            echo "test.zip extract succesfully";
-        }else{
-            echo "failed to extract";
-        }*/ 
-        
-
-
-        ?>
-        
-        <form method="POST">
-            <input type = "button" id="button1" value="Verify" onclick="verify()">
-        </form>
-        
-        <br><br>
-        <textarea id = "txtInput" name = "text" rows= "6" cols = "40">Put the letters</textarea>
-        <br><br>
-    
-    
     
     <script type="text/javascript">
         
         function formSubmit(f) {
-            var extArray = new Array('zip','xls','doc','xlsx','docx','pdf','jpg','gif','png','txt','ppt','pptx', 'c', 'h');
+            var extArray = new Array('zip','c', 'h');
             var path = document.getElementById("upfile").value;
             if(path == "") {
                 alert("파일을 선택해 주세요.");
@@ -165,18 +79,25 @@
             }
 
             var ext = path.slice(path.indexOf(".") + 1).toLowerCase();
+            
+            console.log(ext);
+            
+            var file = ext.split('.');
+            
             var checkExt = false;
             for(var i = 0; i < extArray.length; i++) {
-                if(ext == extArray[i]) {
+                if(file[0] == extArray[i]) {
                     checkExt = true;
                     break;
                 }
             }
 
-            /*if(checkExt == false) {
+            if(checkExt == false) {
                 alert("업로드 할 수 없는 파일 확장자 입니다.");
                 return false;
-            }*/
+            }
+            
+            
 
             return true;
         }
@@ -225,8 +146,12 @@
 
                     $answer = shell_exec("main.exe");
                 ?>
-
+                
+                document.cookie = BitsradioVal;
+                
                 location.reload(); 
+                
+                document.getElementById("demo").innerHTML = "Paragraph changed!";
             }else {
                 randomString();
             }
