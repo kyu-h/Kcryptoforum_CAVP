@@ -68,32 +68,60 @@
         shell_exec("gcc -o user_test.exe " . $Cfinal);
         shell_exec("user_test.exe");
     
-        /*echo "System output <br>";
+        ?>
+        
+        <script>
+            var bits = document.cookie;
+            var filename_rsp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\Hash_test\\LSH-"+bits+"_rsp.txt";
+            var filename_cp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\Hash_test\\LSH-"+bits+"_cp.txt";
+            
+            document.writeln("Local system output file <br>");
+            readFile_rsp(filename_rsp);
+            document.writeln("<br /><br /><br />");
+            document.writeln("User system output file <br>");
+            readFile_cp(filename_cp);    
+            
+            $(window).ready(function(){
+                console.log("load");
+                
+            });
+            
+            /*setTimeout(function() {
+                console.log('Works!@@');
+                readFile_cp(filename_cp); 
+            }, 3000);*/
+            
+            function readFile_rsp(filename_rsp){
+                console.log(filename_rsp);
+                var fso = new ActiveXObject("Scripting.FileSystemObject");    
+                var ForReading = 1;
+                var f1 = fso.OpenTextFile(filename_rsp, ForReading);
+                var text = f1.ReadAll();
+                console.log(text);
+                document.writeln(text);
+                f1.close();
+                return text;
+            }
+            
+            function readFile_cp(filename_cp){
+                console.log(filename_cp);
+                var fso = new ActiveXObject("Scripting.FileSystemObject");    
+                var ForReading = 1;
+                var f1 = fso.OpenTextFile(filename_cp, ForReading);
+                var text = f1.ReadAll();
+                console.log(text);
+                document.writeln(text);
+                f1.close();
+                return text;
+            }
+        </script>
+        
     
-        if (isset($_COOKIE["cookie"])) {
-            echo "Welcome " . $_COOKIE["user"] . "!<br/>";
-        } else {
-            echo "There are no cookies<br/>";
-        }*/
-    
-        echo "aa: ";
-        echo $good."<br>";
-    
-    
-        $aa = "512_384";
-        $bits = '<script>document.write(bits);</script>';
-        echo $bits."<br>";
-    
-        if(!strcmp($bits, $aa)){
-            echo "same";
-        }else {
-            echo $bits."==".$aa;
-            echo "different";
-        }
+        <?php
         
         //$file_location = "Hash_test/LSH-".$bits."_rsp.txt"
         
-        $handle_rsp = fopen("Hash_test/LSH-512_384_rsp.txt", "r"); //읽기 모드로 text문서 열기  
+        /*$handle_rsp = fopen("Hash_test/LSH-512_384_rsp.txt", "r"); //읽기 모드로 text문서 열기  
         $lineRead_rsp = 0;
     
         if(!$handle_rsp) die("Not Found!!!<br>");//실패시 경고문
@@ -133,7 +161,7 @@
         
         if($count == 0){
             echo "Perfectly matched!!<br>";
-        }
+        }*/
         
     ?>
 </body>
