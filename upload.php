@@ -68,7 +68,7 @@
             <label for="upfile2">첨부파일</label>
             <input type="file" name="upfile2" id="upfile2" />
         </div>
-        <input type="submit" value="업로드!!" />
+        <input type="submit" value="업로드" />
     </form>
     
     <script type="text/javascript">

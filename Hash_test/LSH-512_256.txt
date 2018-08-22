@@ -1,7 +1,7 @@
 Algo_ID = LSH-512_256
 Message = 5
-"QN1X9cgpAf6"
-"QN1X9cgpAf6M51A0ZoR9qf"
-"QN1X9cgpAf6M51A0ZoR9qf8Vw6TROfM3E"
-"QN1X9cgpAf6M51A0ZoR9qf8Vw6TROfM3EiLhQnmNrXwd"
-"QN1X9cgpAf6M51A0ZoR9qf8Vw6TROfM3EiLhQnmNrXwd5ZwteSua4sc"
+"cTXn"
+"cTXnaMnC"
+"cTXnaMnCsr1r"
+"cTXnaMnCsr1rttBN"
+"cTXnaMnCsr1rttBNCTM4"

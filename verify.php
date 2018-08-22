@@ -16,8 +16,6 @@
         // 목록을 가져올 파일을 선택합니다. 
     
         $algo = $_GET['algo'];
-    
-        echo $algo."<br>";
         
         if($algo == "LSH"){
             $zipfile = new PclZip('Hash_test/LSH_NEW.zip');      
@@ -31,9 +29,9 @@
         $extract = $zipfile->extract(PCLZIP_OPT_PATH, './');
         
         if(!empty($extract)){
-            echo "LSH_NEW.zip extract succesfully";
+            echo "LSH_NEW.zip extract succesfully<br>";
         }else{
-            echo "failed to extract";
+            echo "failed to extract<br>";
         } 
     
         // 엔트리 얻기 
@@ -54,8 +52,8 @@
                 $Carray[$j] .= ".o ";
                 $CC[$j] .= ".c ";
                 
-                echo $CC[$j] . "<br>";
-                echo $Carray[$j++] . "<br>";
+                echo $CC[$j] . " / ";
+                echo $Carray[$j++] . " / ";
             }
         }
     
@@ -92,12 +90,19 @@
         var algo = split_cookie[0];
         var bits = split_cookie[1];
         
+        var text_rsp = "";
+        var text_cp = "";
+        
         if(algo == "LSH"){
             console.log("LSH");
-            
+            var input = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\Hash_test\\LSH-"+bits+".txt";
             var filename_rsp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\Hash_test\\LSH-"+bits+"_rsp.txt";
             var filename_cp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\Hash_test\\LSH-"+bits+"_cp.txt";
             
+            document.writeln("<br /><br />");
+            document.writeln("Input file<br>");
+            inputFile(input);
+            document.writeln("<br /><br /><br />");
             document.writeln("Local system output file <br>");
             readFile_rsp(filename_rsp);
             document.writeln("<br /><br /><br />");
@@ -110,10 +115,13 @@
             });    
         }else if (algo == "LEA"){
             console.log("LEA");
-            
+            var input = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA-"+bits+".txt";
             var filename_rsp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA-"+bits+"_rsp.txt";
             var filename_cp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA-"+bits+"_cp.txt";
             
+            document.writeln("Input file<br>");
+            inputFile(input);
+            document.writeln("<br /><br /><br />");
             document.writeln("Local system output file <br>");
             readFile_rsp(filename_rsp);
             document.writeln("<br /><br /><br />");
@@ -126,16 +134,28 @@
             }); 
         }
         
-        function readFile_rsp(filename_rsp){
-            console.log(filename_rsp);
+        function inputFile(input){
+            console.log(input);
             var fso = new ActiveXObject("Scripting.FileSystemObject");    
             var ForReading = 1;
-            var f1 = fso.OpenTextFile(filename_rsp, ForReading);
+            var f1 = fso.OpenTextFile(input, ForReading);
             var text = f1.ReadAll();
             console.log(text);
             document.writeln(text);
             f1.close();
             return text;
+        }
+        
+        function readFile_rsp(filename_rsp){
+            console.log(filename_rsp);
+            var fso = new ActiveXObject("Scripting.FileSystemObject");    
+            var ForReading = 1;
+            var f1 = fso.OpenTextFile(filename_rsp, ForReading);
+            text_rsp = f1.ReadAll();
+            console.log(text_rsp);
+            document.writeln(text_rsp);
+            f1.close();
+            return text_rsp;
         }
 
         function readFile_cp(filename_cp){
@@ -143,11 +163,19 @@
             var fso = new ActiveXObject("Scripting.FileSystemObject");    
             var ForReading = 1;
             var f1 = fso.OpenTextFile(filename_cp, ForReading);
-            var text = f1.ReadAll();
-            console.log(text);
-            document.writeln(text);
+            text_cp = f1.ReadAll();
+            console.log(text_cp);
+            document.writeln(text_cp);
             f1.close();
-            return text;
+            return text_cp;
+        }
+        
+        document.writeln("<br><br><br>");
+        
+        if(text_cp == text_rsp){
+            document.writeln("Perfectly matched!!<br>");
+        }else{
+            document.writeln("There are some errors..<br>");
         }
     </script>
 </body>
