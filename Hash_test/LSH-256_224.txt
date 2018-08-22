@@ -1,7 +1,7 @@
-Algo_ID = LSH-512_224
+Algo_ID = LSH-512_256
 Message = 5
-"Hqc7pk7yCMBOcTGMf"
-"Hqc7pk7yCMBOcTGMfyogmPW9c90NPDyLpx"
-"Hqc7pk7yCMBOcTGMfyogmPW9c90NPDyLpx5hV68Q3ab6emypwB2"
-"Hqc7pk7yCMBOcTGMfyogmPW9c90NPDyLpx5hV68Q3ab6emypwB2WGa8qIlFVoOzA200U"
-"Hqc7pk7yCMBOcTGMfyogmPW9c90NPDyLpx5hV68Q3ab6emypwB2WGa8qIlFVoOzA200UezARHedhqc7PE4Fef"
+"SAGaFuHVaR5uoG6D"
+"SAGaFuHVaR5uoG6DlXwTpOcAmeavx9Vh"
+"SAGaFuHVaR5uoG6DlXwTpOcAmeavx9VhOmqBkxz9pHJBIuOu"
+"SAGaFuHVaR5uoG6DlXwTpOcAmeavx9VhOmqBkxz9pHJBIuOuvXlbOfPtc0QE8d6h"
+"SAGaFuHVaR5uoG6DlXwTpOcAmeavx9VhOmqBkxz9pHJBIuOuvXlbOfPtc0QE8d6h1wabCkbeykEccZ1T"

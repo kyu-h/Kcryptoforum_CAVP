@@ -1,4 +1,4 @@
-#include "Lea_b.h"
+#include "LEA_b.h"
 
 #include <stdio.h>
 #include <stdlib.h>
