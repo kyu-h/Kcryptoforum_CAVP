@@ -41,10 +41,10 @@ void LEA_128(const char *inputFileName, const char *outputFileName){
 	unsigned char pt_128[16] = {0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f};
 	unsigned char k_128[16]	= {0x0f, 0x1e, 0x2d, 0x3c, 0x4b, 0x5a, 0x69, 0x78, 0x87, 0x96, 0xa5, 0xb4, 0xc3, 0xd2, 0xe1, 0xf0};
 
-	unsigned char Key[5][MAX_MARKER_LEN];
+	unsigned char Key[200][MAX_MARKER_LEN];
 	unsigned char *split_Key[16] = {NULL, };
 	unsigned char Hex_Key[16] = {NULL, };
-	unsigned char PlainText[5][MAX_MARKER_LEN];
+	unsigned char PlainText[200][MAX_MARKER_LEN];
 	unsigned char *split_PlainText[16] = {NULL, };
 	unsigned char Hex_Plain[16] = {NULL, };
 	char str;
@@ -162,10 +162,10 @@ void LEA_128(const char *inputFileName, const char *outputFileName){
 void LEA_192(const char *inputFileName, const char *outputFileName){
 	unsigned char ct[16] = {0x00, };
 
-	unsigned char Key[5][MAX_MARKER_LEN];
+	unsigned char Key[200][MAX_MARKER_LEN];
 	unsigned char *split_Key[32] = {NULL, };
 	unsigned char Hex_Key[32] = {NULL, };
-	unsigned char PlainText[5][MAX_MARKER_LEN];
+	unsigned char PlainText[200][MAX_MARKER_LEN];
 	unsigned char *split_PlainText[16] = {NULL, };
 	unsigned char Hex_Plain[16] = {NULL, };
 	char str;
@@ -269,8 +269,8 @@ void LEA_192(const char *inputFileName, const char *outputFileName){
 		   Hex_Key[b] = strtol(temp_arr, NULL, 16);
 		}
 
-		KeySchedule_enc_128(Hex_Key);
-		encrypt_128(Hex_Plain, ct);
+		KeySchedule_enc_192(Hex_Key);
+		encrypt_192(Hex_Plain, ct);
 
 		for(int i=0; i<16; i++){
 			fprintf(fp_out, "%02x", ct[i]);
@@ -283,10 +283,10 @@ void LEA_192(const char *inputFileName, const char *outputFileName){
 void LEA_256(const char *inputFileName, const char *outputFileName){
 	unsigned char ct[16] = {0x00, };
 
-	unsigned char Key[5][MAX_MARKER_LEN];
+	unsigned char Key[200][MAX_MARKER_LEN];
 	unsigned char *split_Key[32] = {NULL, };
 	unsigned char Hex_Key[32] = {NULL, };
-	unsigned char PlainText[5][MAX_MARKER_LEN];
+	unsigned char PlainText[200][MAX_MARKER_LEN];
 	unsigned char *split_PlainText[16] = {NULL, };
 	unsigned char Hex_Plain[16] = {NULL, };
 	char str;
@@ -390,10 +390,10 @@ void LEA_256(const char *inputFileName, const char *outputFileName){
 		   Hex_Key[b] = strtol(temp_arr, NULL, 16);
 		}
 
-		KeySchedule_enc_128(Hex_Key);
-		encrypt_128(Hex_Plain, ct);
+		KeySchedule_enc_256(Hex_Key);
+		encrypt_256(Hex_Plain, ct);
 
-		for(int i=0; i<31; i++){
+		for(int i=0; i<16; i++){
 			fprintf(fp_out, "%02x", ct[i]);
 		}fprintf(fp_out, "\n");
 
