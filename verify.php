@@ -14,7 +14,9 @@
         //***********C파일만 골라서 가져오기**********//
         // PclZip 객체를 생성합니다. 
         // 목록을 가져올 파일을 선택합니다. 
-        $zipfile = new PclZip('Hash_test/LSH_NEW.zip');  
+        
+        //$zipfile = new PclZip('Hash_test/LSH_NEW.zip');  
+        $zipfile = new PclZip('Hash_test/LEA_NEW.zip');  
     
         //**********압축 풀기************//
         //$zipfile = new PclZip('test.zip');
@@ -65,13 +67,22 @@
             shell_exec("gcc -c " . $CC[$i]);
         }
         
-        shell_exec("gcc -o user_test.exe " . $Cfinal);
-        shell_exec("user_test.exe");
+        shell_exec("gcc -o user_test_lea.exe " . $Cfinal);
+        shell_exec("user_test_lea.exe");
     
-        ?>
+    ?>
         
-        <script>
-            var bits = document.cookie;
+    <script>
+        var cookie = document.cookie;
+        console.log(cookie);
+        
+        var split_cookie = cookie.split('/');
+        
+        var algo = split_cookie[0];
+        var bits = split_cookie[1];
+        
+        if(algo == "LSH"){
+            console.log("LSH");
             var filename_rsp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\Hash_test\\LSH-"+bits+"_rsp.txt";
             var filename_cp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\Hash_test\\LSH-"+bits+"_cp.txt";
             
@@ -80,89 +91,52 @@
             document.writeln("<br /><br /><br />");
             document.writeln("User system output file <br>");
             readFile_cp(filename_cp);    
-            
+
             $(window).ready(function(){
                 console.log("load");
-                
-            });
-            
-            /*setTimeout(function() {
-                console.log('Works!@@');
-                readFile_cp(filename_cp); 
-            }, 3000);*/
-            
-            function readFile_rsp(filename_rsp){
-                console.log(filename_rsp);
-                var fso = new ActiveXObject("Scripting.FileSystemObject");    
-                var ForReading = 1;
-                var f1 = fso.OpenTextFile(filename_rsp, ForReading);
-                var text = f1.ReadAll();
-                console.log(text);
-                document.writeln(text);
-                f1.close();
-                return text;
-            }
-            
-            function readFile_cp(filename_cp){
-                console.log(filename_cp);
-                var fso = new ActiveXObject("Scripting.FileSystemObject");    
-                var ForReading = 1;
-                var f1 = fso.OpenTextFile(filename_cp, ForReading);
-                var text = f1.ReadAll();
-                console.log(text);
-                document.writeln(text);
-                f1.close();
-                return text;
-            }
-        </script>
-        
-    
-        <?php
-        
-        //$file_location = "Hash_test/LSH-".$bits."_rsp.txt"
-        
-        /*$handle_rsp = fopen("Hash_test/LSH-512_384_rsp.txt", "r"); //읽기 모드로 text문서 열기  
-        $lineRead_rsp = 0;
-    
-        if(!$handle_rsp) die("Not Found!!!<br>");//실패시 경고문
 
-        for ($i=0 ; !feof($handle_rsp) ; $i++) { //텍스트 문서에서 한줄한줄 읽어와 배열에 저장
-            $buffer_rsp[$i] = fgets($handle_rsp, 1000);
-            echo $i."번째 줄 : ".$buffer_rsp[$i]."<br/>";
-            $lineRead_rsp++;
-        }
-        fclose($handle);//파일 닫기  
-    
-        echo "<br><br>";
-    
-        echo "User's output <br>";
-        $handle_cp = fopen("Hash_test/LSH-512_384_cp.txt", "r"); //읽기 모드로 text문서 열기
-        $lineRead_cp = 0;
-    
-        if(!$handle_cp) die("Not Found!!!<br>");//실패시 경고문
+            });    
+        }else if (algo == "LEA"){
+            console.log("LEA");
+            
+            var filename_rsp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA-"+bits+"_rsp.txt";
+            var filename_cp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA-"+bits+"_cp.txt";
+            
+            document.writeln("Local system output file <br>");
+            readFile_rsp(filename_rsp);
+            document.writeln("<br /><br /><br />");
+            document.writeln("User system output file <br>");
+            readFile_cp(filename_cp);    
 
-        for ($i=0 ; !feof($handle_cp) ; $i++) { //텍스트 문서에서 한줄한줄 읽어와 배열에 저장
-            $buffer_cp[$i] = fgets($handle_cp, 1000);
-            echo $i."번째 줄 : ".$buffer_cp[$i]."<br/>";
-            $lineRead_cp++;
+            $(window).ready(function(){
+                console.log("load");
+
+            });    
         }
-        fclose($handle_cp);//파일 닫기
-    
-        echo "<br><br>";
-    
-        for($i=0; $i<$lineRead_rsp; $i++){
-            if($buffer_rsp[$i] != $buffer_cp[$i]){
-                echo "rsp: ".$i."번째 줄 : ".$buffer_rsp[$i]."<br/>";
-                echo "cp:  ".$i."번째 줄 : ".$buffer_cp[$i]."<br/>";
-            }else {
-                $count = 0;
-            }
+
+        function readFile_rsp(filename_rsp){
+            console.log(filename_rsp);
+            var fso = new ActiveXObject("Scripting.FileSystemObject");    
+            var ForReading = 1;
+            var f1 = fso.OpenTextFile(filename_rsp, ForReading);
+            var text = f1.ReadAll();
+            console.log(text);
+            document.writeln(text);
+            f1.close();
+            return text;
         }
-        
-        if($count == 0){
-            echo "Perfectly matched!!<br>";
-        }*/
-        
-    ?>
+
+        function readFile_cp(filename_cp){
+            console.log(filename_cp);
+            var fso = new ActiveXObject("Scripting.FileSystemObject");    
+            var ForReading = 1;
+            var f1 = fso.OpenTextFile(filename_cp, ForReading);
+            var text = f1.ReadAll();
+            console.log(text);
+            document.writeln(text);
+            f1.close();
+            return text;
+        }
+    </script>
 </body>
 </html>

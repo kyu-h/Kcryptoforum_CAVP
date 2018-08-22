@@ -116,6 +116,10 @@
         function click_btn(){
             var AlgoradioVal = $(':radio[name="algo"]:checked').val();
             var BitsradioVal = $(':radio[name="bits"]:checked').val();
+            
+            var send_cookie = AlgoradioVal + "/" + BitsradioVal;
+            
+            console.log(send_cookie);
 
             if(AlgoradioVal == "LSH"){
                 console.log(AlgoradioVal);
@@ -146,7 +150,7 @@
                     $answer = shell_exec("main.exe");
                 ?>
                 
-                document.cookie = BitsradioVal;
+                document.cookie = send_cookie;
                 
                 location.reload(); 
             }else {
@@ -170,7 +174,7 @@
                     $answer = shell_exec("lea_main.exe");
                 ?>
                 
-                location.reload();
+                document.cookie = send_cookie;
             }
         }
 
