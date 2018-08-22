@@ -41,10 +41,10 @@ void LEA_128(const char *inputFileName, const char *outputFileName){
 	unsigned char pt_128[16] = {0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f};
 	unsigned char k_128[16]	= {0x0f, 0x1e, 0x2d, 0x3c, 0x4b, 0x5a, 0x69, 0x78, 0x87, 0x96, 0xa5, 0xb4, 0xc3, 0xd2, 0xe1, 0xf0};
 
-	unsigned char Key[MAX_MARKER_LEN];
+	unsigned char Key[5][MAX_MARKER_LEN];
 	unsigned char *split_Key[16] = {NULL, };
 	unsigned char Hex_Key[16] = {NULL, };
-	unsigned char PlainText[MAX_MARKER_LEN];
+	unsigned char PlainText[5][MAX_MARKER_LEN];
 	unsigned char *split_PlainText[16] = {NULL, };
 	unsigned char Hex_Plain[16] = {NULL, };
 	char str;
@@ -61,97 +61,111 @@ void LEA_128(const char *inputFileName, const char *outputFileName){
 
 	fp_out = fopen(outputFileName, "w");
 
+	fprintf(fp_out, "Algo_ID = LEA128\n");
+
 	FindMarker(fp_in, "PlainText");
 	fscanf(fp_in, " %c %d", &str, &PlainNum);
 
+	fgets(PlainText[0], MAX_MARKER_LEN, fp_in); //skip line
 	for(int i=0; i<PlainNum; i++){
-		fgets(PlainText, MAX_MARKER_LEN, fp_in); //skip line
-		fgets(PlainText, MAX_MARKER_LEN, fp_in);
+		fgets(PlainText[i], MAX_MARKER_LEN, fp_in);
+		//printf("%s", PlainText[i]);
 	}
-
-	//************remove " **************//
-	PlainText[strlen(PlainText) - 1] = '\0';
-
-	for(z = 0, k = 0 ; z < strlen(PlainText) ; z++){
-		if(PlainText[z] != '\"')
-			PlainText[k++] = PlainText[z];
-	}
-	PlainText[k] = '\0';
-
-	//***************split***************//
-	str_Plain = strtok(PlainText, ", ");
-
-	while(str_Plain != NULL){
-		split_PlainText[num++] = str_Plain;
-		str_Plain = strtok(NULL, ", ");
-	}
-
-	printf("Plain: ");
-	for(int i=0; i<16; i++){
-		if(split_PlainText[i] != NULL){
-			printf("%s ", split_PlainText[i]);
-		}
-	}
-
-	//**********string to Hex**********//
-	for(int a = 0, b = 0 ; b < 16; b++){
-	   unsigned char temp_arr[3] = {split_PlainText[b][0], split_PlainText[b][1], '\0'};
-	   Hex_Plain[b] = strtol(temp_arr, NULL, 16);
-	}
-
-	num = 0;
 
 	FindMarker(fp_in, "Key");
 	fscanf(fp_in, " %c %d", &str, &KeyNum);
 
+	fgets(Key[0], MAX_MARKER_LEN, fp_in); //skip line
 	for(int i=0; i<KeyNum; i++){
-		fgets(Key, MAX_MARKER_LEN, fp_in); //skip line
-		fgets(Key, MAX_MARKER_LEN, fp_in);
+		fgets(Key[i], MAX_MARKER_LEN, fp_in);
+		//printf("%s", Key[i]);
 	}
 
-	//************remove " **************//
-	Key[strlen(Key) - 1] = '\0';
+	if(PlainNum != KeyNum)
+		printf("nums are diff!!!");
 
-	for(z = 0, k = 0 ; z < strlen(Key) ; z++){
-		if(Key[z] != '\"')
-			Key[k++] = Key[z];
-	}
-	Key[k] = '\0';
+	for(int i=0; i<PlainNum; i++){
+		//************remove " **************//
+		PlainText[i][strlen(PlainText[i]) - 1] = '\0';
 
-	//***************split***************//
-	str_Key = strtok(Key, ", ");
-
-	while(str_Key != NULL){
-		split_Key[num++] = str_Key;
-		str_Key = strtok(NULL, ", ");
-	}
-
-	printf("Key: ");
-	for(int i=0; i<16; i++){
-		if(split_Key[i] != NULL){
-			printf("%s ", split_Key[i]);
+		for(z = 0, k = 0 ; z < strlen(PlainText[i]) ; z++){
+			if(PlainText[i][z] != '\"')
+				PlainText[i][k++] = PlainText[i][z];
 		}
-	}
-	printf("\n");
+		PlainText[i][k] = '\0';
 
-	//**********string to Hex**********//
-	for(int a = 0, b = 0 ; b < 16; b++){
-	   unsigned char temp_arr[3] = {split_Key[b][0], split_Key[b][1], '\0'};
-	   Hex_Key[b] = strtol(temp_arr, NULL, 16);
-	}
+		//***************split***************//
+		str_Plain = strtok(PlainText[i], ", ");
 
-	KeySchedule_enc_128(Hex_Key);
-	encrypt_128(Hex_Plain, ct);
-	printf("\n");
+		while(str_Plain != NULL){
+			split_PlainText[num++] = str_Plain;
+			str_Plain = strtok(NULL, ", ");
+		}
+
+		printf("Plain: ");
+		for(int m=0; m<16; m++){
+			if(split_PlainText[m] != NULL){
+				printf("%s ", split_PlainText[m]);
+			}
+		}
+
+		//**********string to Hex**********//
+		for(int b = 0 ; b < 16; b++){
+		   unsigned char temp_arr[3] = {split_PlainText[b][0], split_PlainText[b][1], '\0'};
+		   Hex_Plain[b] = strtol(temp_arr, NULL, 16);
+		}
+
+		num = 0;
+
+		//************remove " **************//
+		Key[i][strlen(Key[i]) - 1] = '\0';
+
+		for(z = 0, k = 0 ; z < strlen(Key[i]) ; z++){
+			if(Key[i][z] != '\"')
+				Key[i][k++] = Key[i][z];
+		}
+		Key[i][k] = '\0';
+
+		//***************split***************//
+		str_Key = strtok(Key[i], ", ");
+
+		while(str_Key != NULL){
+			split_Key[num++] = str_Key;
+			str_Key = strtok(NULL, ", ");
+		}
+
+		printf("\nKey: ");
+		for(int m=0; m<16; m++){
+			if(split_Key[m] != NULL){
+				printf("%s ", split_Key[m]);
+			}
+		}
+		printf("\n");
+
+		//**********string to Hex**********//
+		for(int b = 0 ; b < 16; b++){
+		   unsigned char temp_arr[3] = {split_Key[b][0], split_Key[b][1], '\0'};
+		   Hex_Key[b] = strtol(temp_arr, NULL, 16);
+		}
+
+		KeySchedule_enc_128(Hex_Key);
+		encrypt_128(Hex_Plain, ct);
+
+		for(int i=0; i<16; i++){
+			fprintf(fp_out, "%02x", ct[i]);
+		}fprintf(fp_out, "\n");
+
+		num = 0;
+	}
 }
 
 void LEA_192(const char *inputFileName, const char *outputFileName){
 	unsigned char ct[16] = {0x00, };
 
-	unsigned char Key[MAX_MARKER_LEN];
+	unsigned char Key[5][MAX_MARKER_LEN];
 	unsigned char *split_Key[32] = {NULL, };
 	unsigned char Hex_Key[32] = {NULL, };
-	unsigned char PlainText[MAX_MARKER_LEN];
+	unsigned char PlainText[5][MAX_MARKER_LEN];
 	unsigned char *split_PlainText[16] = {NULL, };
 	unsigned char Hex_Plain[16] = {NULL, };
 	char str;
@@ -168,99 +182,111 @@ void LEA_192(const char *inputFileName, const char *outputFileName){
 
 	fp_out = fopen(outputFileName, "w");
 
+	fprintf(fp_out, "Algo_ID = LEA192\n");
+
 	FindMarker(fp_in, "PlainText");
 	fscanf(fp_in, " %c %d", &str, &PlainNum);
 
+	fgets(PlainText[0], MAX_MARKER_LEN, fp_in); //skip line
 	for(int i=0; i<PlainNum; i++){
-		fgets(PlainText, MAX_MARKER_LEN, fp_in); //skip line
-		fgets(PlainText, MAX_MARKER_LEN, fp_in);
+		fgets(PlainText[i], MAX_MARKER_LEN, fp_in);
+		//printf("%s", PlainText[i]);
 	}
-
-	//************remove " **************//
-	PlainText[strlen(PlainText) - 1] = '\0';
-
-	for(z = 0, k = 0 ; z < strlen(PlainText) ; z++){
-		if(PlainText[z] != '\"')
-			PlainText[k++] = PlainText[z];
-	}
-	PlainText[k] = '\0';
-
-	//***************split***************//
-	str_Plain = strtok(PlainText, ", ");
-
-	while(str_Plain != NULL){
-		split_PlainText[num++] = str_Plain;
-		str_Plain = strtok(NULL, ", ");
-	}
-
-	printf("Plain: ");
-	for(int i=0; i<16; i++){
-		if(split_PlainText[i] != NULL){
-			printf("%s ", split_PlainText[i]);
-		}
-	}
-
-	//**********string to Hex**********//
-	for(int a = 0, b = 0 ; b < 16; b++){
-	   unsigned char temp_arr[3] = {split_PlainText[b][0], split_PlainText[b][1], '\0'};
-	   Hex_Plain[b] = strtol(temp_arr, NULL, 16);
-	}
-
-	num = 0;
 
 	FindMarker(fp_in, "Key");
 	fscanf(fp_in, " %c %d", &str, &KeyNum);
 
+	fgets(Key[0], MAX_MARKER_LEN, fp_in); //skip line
 	for(int i=0; i<KeyNum; i++){
-		fgets(Key, MAX_MARKER_LEN, fp_in); //skip line
-		fgets(Key, MAX_MARKER_LEN, fp_in);
+		fgets(Key[i], MAX_MARKER_LEN, fp_in);
+		//printf("%s", Key[i]);
 	}
 
-	//************remove " **************//
-	Key[strlen(Key) - 1] = '\0';
+	if(PlainNum != KeyNum)
+		printf("nums are diff!!!");
 
-	for(z = 0, k = 0 ; z < strlen(Key) ; z++){
-		if(Key[z] != '\"')
-			Key[k++] = Key[z];
-	}
-	Key[k] = '\0';
+	for(int i=0; i<PlainNum; i++){
+		//************remove " **************//
+		PlainText[i][strlen(PlainText[i]) - 1] = '\0';
 
-	//***************split***************//
-	str_Key = strtok(Key, ", ");
-
-	while(str_Key != NULL){
-		split_Key[num++] = str_Key;
-		str_Key = strtok(NULL, ", ");
-	}
-
-	printf("\nKey: ");
-	for(int i=0; i<32; i++){
-		if(split_Key[i] != NULL){
-			printf("%s ", split_Key[i]);
+		for(z = 0, k = 0 ; z < strlen(PlainText[i]) ; z++){
+			if(PlainText[i][z] != '\"')
+				PlainText[i][k++] = PlainText[i][z];
 		}
+		PlainText[i][k] = '\0';
+
+		//***************split***************//
+		str_Plain = strtok(PlainText[i], ", ");
+
+		while(str_Plain != NULL){
+			split_PlainText[num++] = str_Plain;
+			str_Plain = strtok(NULL, ", ");
+		}
+
+		printf("Plain: ");
+		for(int m=0; m<16; m++){
+			if(split_PlainText[m] != NULL){
+				printf("%s ", split_PlainText[m]);
+			}
+		}
+
+		//**********string to Hex**********//
+		for(int b = 0 ; b < 16; b++){
+		   unsigned char temp_arr[3] = {split_PlainText[b][0], split_PlainText[b][1], '\0'};
+		   Hex_Plain[b] = strtol(temp_arr, NULL, 16);
+		}
+
+		num = 0;
+
+		//************remove " **************//
+		Key[i][strlen(Key[i]) - 1] = '\0';
+
+		for(z = 0, k = 0 ; z < strlen(Key[i]) ; z++){
+			if(Key[i][z] != '\"')
+				Key[i][k++] = Key[i][z];
+		}
+		Key[i][k] = '\0';
+
+		//***************split***************//
+		str_Key = strtok(Key[i], ", ");
+
+		while(str_Key != NULL){
+			split_Key[num++] = str_Key;
+			str_Key = strtok(NULL, ", ");
+		}
+
+		printf("\nKey: ");
+		for(int m=0; m<32; m++){
+			if(split_Key[m] != NULL){
+				printf("%s ", split_Key[m]);
+			}
+		}
+		printf("\n");
+
+		//**********string to Hex**********//
+		for(int b = 0 ; b < 24; b++){
+		   unsigned char temp_arr[3] = {split_Key[b][0], split_Key[b][1], '\0'};
+		   Hex_Key[b] = strtol(temp_arr, NULL, 16);
+		}
+
+		KeySchedule_enc_128(Hex_Key);
+		encrypt_128(Hex_Plain, ct);
+
+		for(int i=0; i<16; i++){
+			fprintf(fp_out, "%02x", ct[i]);
+		}fprintf(fp_out, "\n");
+
+		num = 0;
 	}
-	printf("\n");
-
-	//**********string to Hex**********//
-
-	for(int b = 0 ; b < 24; b++){
-	   unsigned char temp_arr[3] = {split_Key[b][0], split_Key[b][1], '\0'};
-	   Hex_Key[b] = strtol(temp_arr, NULL, 16);
-	}
-
-	KeySchedule_enc_192(Hex_Key);
-	encrypt_192(Hex_Plain, ct);
-
-	printf("\n");
 }
 
 void LEA_256(const char *inputFileName, const char *outputFileName){
 	unsigned char ct[16] = {0x00, };
 
-	unsigned char Key[MAX_MARKER_LEN];
+	unsigned char Key[5][MAX_MARKER_LEN];
 	unsigned char *split_Key[32] = {NULL, };
 	unsigned char Hex_Key[32] = {NULL, };
-	unsigned char PlainText[MAX_MARKER_LEN];
+	unsigned char PlainText[5][MAX_MARKER_LEN];
 	unsigned char *split_PlainText[16] = {NULL, };
 	unsigned char Hex_Plain[16] = {NULL, };
 	char str;
@@ -277,89 +303,102 @@ void LEA_256(const char *inputFileName, const char *outputFileName){
 
 	fp_out = fopen(outputFileName, "w");
 
+	fprintf(fp_out, "Algo_ID = LEA256\n");
+
 	FindMarker(fp_in, "PlainText");
 	fscanf(fp_in, " %c %d", &str, &PlainNum);
 
+	fgets(PlainText[0], MAX_MARKER_LEN, fp_in); //skip line
 	for(int i=0; i<PlainNum; i++){
-		fgets(PlainText, MAX_MARKER_LEN, fp_in); //skip line
-		fgets(PlainText, MAX_MARKER_LEN, fp_in);
+		fgets(PlainText[i], MAX_MARKER_LEN, fp_in);
+		//printf("%s", PlainText[i]);
 	}
-
-	//************remove " **************//
-	PlainText[strlen(PlainText) - 1] = '\0';
-
-	for(z = 0, k = 0 ; z < strlen(PlainText) ; z++){
-		if(PlainText[z] != '\"')
-			PlainText[k++] = PlainText[z];
-	}
-	PlainText[k] = '\0';
-
-	//***************split***************//
-	str_Plain = strtok(PlainText, ", ");
-
-	while(str_Plain != NULL){
-		split_PlainText[num++] = str_Plain;
-		str_Plain = strtok(NULL, ", ");
-	}
-
-	printf("Plain: ");
-	for(int i=0; i<16; i++){
-		if(split_PlainText[i] != NULL){
-			printf("%s ", split_PlainText[i]);
-		}
-	}
-
-	//**********string to Hex**********//
-	for(int a = 0, b = 0 ; b < 16; b++){
-	   unsigned char temp_arr[3] = {split_PlainText[b][0], split_PlainText[b][1], '\0'};
-	   Hex_Plain[b] = strtol(temp_arr, NULL, 16);
-	}
-
-	num = 0;
 
 	FindMarker(fp_in, "Key");
 	fscanf(fp_in, " %c %d", &str, &KeyNum);
 
+	fgets(Key[0], MAX_MARKER_LEN, fp_in); //skip line
 	for(int i=0; i<KeyNum; i++){
-		fgets(Key, MAX_MARKER_LEN, fp_in); //skip line
-		fgets(Key, MAX_MARKER_LEN, fp_in);
+		fgets(Key[i], MAX_MARKER_LEN, fp_in);
+		//printf("%s", Key[i]);
 	}
 
-	//************remove " **************//
-	Key[strlen(Key) - 1] = '\0';
+	if(PlainNum != KeyNum)
+		printf("nums are diff!!!");
 
-	for(z = 0, k = 0 ; z < strlen(Key) ; z++){
-		if(Key[z] != '\"')
-			Key[k++] = Key[z];
-	}
-	Key[k] = '\0';
+	for(int i=0; i<PlainNum; i++){
+		//************remove " **************//
+		PlainText[i][strlen(PlainText[i]) - 1] = '\0';
 
-	//***************split***************//
-	str_Key = strtok(Key, ", ");
-
-	while(str_Key != NULL){
-		split_Key[num++] = str_Key;
-		str_Key = strtok(NULL, ", ");
-	}
-
-	printf("\nKey: ");
-	for(int i=0; i<32; i++){
-		if(split_Key[i] != NULL){
-			printf("%s ", split_Key[i]);
+		for(z = 0, k = 0 ; z < strlen(PlainText[i]) ; z++){
+			if(PlainText[i][z] != '\"')
+				PlainText[i][k++] = PlainText[i][z];
 		}
+		PlainText[i][k] = '\0';
+
+		//***************split***************//
+		str_Plain = strtok(PlainText[i], ", ");
+
+		while(str_Plain != NULL){
+			split_PlainText[num++] = str_Plain;
+			str_Plain = strtok(NULL, ", ");
+		}
+
+		printf("Plain: ");
+		for(int m=0; m<16; m++){
+			if(split_PlainText[m] != NULL){
+				printf("%s ", split_PlainText[m]);
+			}
+		}
+
+		//**********string to Hex**********//
+		for(int b = 0 ; b < 16; b++){
+		   unsigned char temp_arr[3] = {split_PlainText[b][0], split_PlainText[b][1], '\0'};
+		   Hex_Plain[b] = strtol(temp_arr, NULL, 16);
+		}
+
+		num = 0;
+
+		//************remove " **************//
+		Key[i][strlen(Key[i]) - 1] = '\0';
+
+		for(z = 0, k = 0 ; z < strlen(Key[i]) ; z++){
+			if(Key[i][z] != '\"')
+				Key[i][k++] = Key[i][z];
+		}
+		Key[i][k] = '\0';
+
+		//***************split***************//
+		str_Key = strtok(Key[i], ", ");
+
+		while(str_Key != NULL){
+			split_Key[num++] = str_Key;
+			str_Key = strtok(NULL, ", ");
+		}
+
+		printf("\nKey: ");
+		for(int m=0; m<32; m++){
+			if(split_Key[m] != NULL){
+				printf("%s ", split_Key[m]);
+			}
+		}
+		printf("\n");
+
+		//**********string to Hex**********//
+		for(int b = 0 ; b < 32; b++){
+		   unsigned char temp_arr[3] = {split_Key[b][0], split_Key[b][1], '\0'};
+		   Hex_Key[b] = strtol(temp_arr, NULL, 16);
+		}
+
+		KeySchedule_enc_128(Hex_Key);
+		encrypt_128(Hex_Plain, ct);
+
+		for(int i=0; i<31; i++){
+			fprintf(fp_out, "%02x", ct[i]);
+		}fprintf(fp_out, "\n");
+
+		num = 0;
 	}
-	printf("\n");
-
-
-	//**********string to Hex**********//
-	for(int a = 0, b = 0 ; b < 31; b++){
-	   unsigned char temp_arr[3] = {split_Key[b][0], split_Key[b][1], '\0'};
-	   Hex_Key[b] = strtol(temp_arr, NULL, 16);
-	}
-
-	KeySchedule_enc_256(Hex_Key);
-	encrypt_256(Hex_Plain, ct);
-	printf("\n");
 }
 
 
