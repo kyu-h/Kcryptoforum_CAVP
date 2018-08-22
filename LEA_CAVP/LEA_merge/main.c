@@ -233,7 +233,7 @@ void LEA_192(const char *inputFileName, const char *outputFileName){
 		str_Key = strtok(NULL, ", ");
 	}
 
-	printf("Key: ");
+	printf("\nKey: ");
 	for(int i=0; i<32; i++){
 		if(split_Key[i] != NULL){
 			printf("%s ", split_Key[i]);
@@ -242,7 +242,8 @@ void LEA_192(const char *inputFileName, const char *outputFileName){
 	printf("\n");
 
 	//**********string to Hex**********//
-	for(int a = 0, b = 0 ; b < 32; b++){
+
+	for(int b = 0 ; b < 24; b++){
 	   unsigned char temp_arr[3] = {split_Key[b][0], split_Key[b][1], '\0'};
 	   Hex_Key[b] = strtol(temp_arr, NULL, 16);
 	}
@@ -341,7 +342,7 @@ void LEA_256(const char *inputFileName, const char *outputFileName){
 		str_Key = strtok(NULL, ", ");
 	}
 
-	printf("Key: ");
+	printf("\nKey: ");
 	for(int i=0; i<32; i++){
 		if(split_Key[i] != NULL){
 			printf("%s ", split_Key[i]);
@@ -349,8 +350,9 @@ void LEA_256(const char *inputFileName, const char *outputFileName){
 	}
 	printf("\n");
 
+
 	//**********string to Hex**********//
-	for(int a = 0, b = 0 ; b < 32; b++){
+	for(int a = 0, b = 0 ; b < 31; b++){
 	   unsigned char temp_arr[3] = {split_Key[b][0], split_Key[b][1], '\0'};
 	   Hex_Key[b] = strtol(temp_arr, NULL, 16);
 	}
@@ -415,10 +417,10 @@ int main()
 			LEA_128(inputFileAddress, outputFileAddress);
 		}else if(!strcmp(pStr, "Algo_ID = LEA-192\n")){
 			printf("LEA192\n");
-			//LEA_192(inputFileAddress, outputFileAddress);
+			LEA_192(inputFileAddress, outputFileAddress);
 		}else if(!strcmp(pStr, "Algo_ID = LEA-256\n")){
 			printf("LEA256\n");
-			//LEA_256(inputFileAddress, outputFileAddress);
+			LEA_256(inputFileAddress, outputFileAddress);
 		}else {
 			printf("Error!\n");
 		}
