@@ -1,7 +1,7 @@
-Algo_ID = LSH-512_256
+Algo_ID = LSH-512_384
 Message = 5
-"rnOwT"
-"rnOwTrV4FF"
-"rnOwTrV4FFtqUkg"
-"rnOwTrV4FFtqUkgkdFN4"
-"rnOwTrV4FFtqUkgkdFN4EJMpX"
+"Vt"
+"VtP6"
+"VtP6xP"
+"VtP6xPfb"
+"VtP6xPfblw"

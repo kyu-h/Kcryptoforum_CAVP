@@ -5,7 +5,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="stylesheet" href="main.css">
         <script src="http://code.jquery.com/jquery-1.10.2.js"></script> <!-- jquery 사용하고 싶을 경우  import -->
-        <!--<script src="C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\upcreatefile2.js"></script>-->
+        <!--<script src="C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\createfile2.js"></script>
+        <script src="C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\createfile_LEA.js"></script>-->
+        <script src="./createfile2.js"></script>
+        <script src="./createfile_LEA.js"></script>
     </head>
     <style>
         table, th, td {
@@ -13,8 +16,7 @@
         }
     </style>
 <body>
-    
-    <p>Please click algorithm type and output bits!!!</p> <br>
+    <p>Please click algorithm type and output bits!</p> <br>
         <table style="">
           <tr>
             <th>Algorithm types</th>
@@ -37,10 +39,9 @@
                 </div>
                 
                 <div id="POP_LEA" style="display: none;">
-                    <input type="radio" name="bits" value="224" checked="checked"> 224<br>
-                    <input type="radio" name="bits" value="256"> 256<br>
-                    <input type="radio" name="bits" value="384"> 384<br>
-                    <input type="radio" name="bits" value="512"> 512
+                    <input type="radio" name="bits" value="128" checked="checked"> 128<br>
+                    <input type="radio" name="bits" value="192"> 192<br>
+                    <input type="radio" name="bits" value="256"> 256
                 </div>
             </td>
           </tr>
@@ -149,7 +150,27 @@
                 
                 location.reload(); 
             }else {
-                randomString();
+                createFileLEA128();
+                createFileLEA192();
+                createFileLEA256();
+                console.log("cccc");
+                
+                <?php
+                    $current = "";
+                    $answer = "";
+
+                    putenv("PATH=C:\\Program Files (x86)\\mingw-w64\\i686-7.3.0-posix-dwarf-rt_v5-rev0\\mingw32\\bin");
+
+                    shell_exec("gcc -c LEA_Main.c");
+                    shell_exec("gcc -c LEA_Default.c");
+                    shell_exec("gcc -c LEA_ConfigMode.c");
+
+                    shell_exec("gcc -o lea_main.exe LEA_Main.o LEA_Default.o LEA_ConfigMode.o");
+
+                    $answer = shell_exec("lea_main.exe");
+                ?>
+                
+                location.reload();
             }
         }
 
@@ -188,373 +209,6 @@
             var x = document.getElementById("myFile");
             x.disabled = true;
         }
-        
-        function createFile256_224_(){
-            var fileObject = new ActiveXObject("Scripting.FileSystemObject");
-
-            var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
-            var result = Math.floor(Math.random() * 30) + 1;
-            var string_length = result;
-            var randomstring = '';
-
-            var BitsradioVal = $(':radio[name="bits"]:checked').val();
-
-            fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\Hash_test\\LSH-256_224.txt", true);
-
-            fWrite.write("Algo_ID = LSH-" + BitsradioVal);
-            fWrite.write("\r\n");
-
-            fWrite.write("Message = 5");
-            fWrite.write("\r\n");
-
-            for (var i=0; i<string_length; i++) {
-                var rnum = Math.floor(Math.random() * chars.length);
-                randomstring += chars.substring(rnum,rnum+1);
-            }
-
-            fWrite.write('"'+randomstring+'"');
-            fWrite.write("\r\n");
-
-            for (var i=0; i<string_length; i++) {
-                var rnum = Math.floor(Math.random() * chars.length);
-                randomstring += chars.substring(rnum,rnum+1);
-            }
-
-            fWrite.write('"'+randomstring+'"');
-            fWrite.write("\r\n");
-
-            for (var i=0; i<string_length; i++) {
-                var rnum = Math.floor(Math.random() * chars.length);
-                randomstring += chars.substring(rnum,rnum+1);
-            }
-
-            fWrite.write('"'+randomstring+'"');
-            fWrite.write("\r\n");
-
-            for (var i=0; i<string_length; i++) {
-                var rnum = Math.floor(Math.random() * chars.length);
-                randomstring += chars.substring(rnum,rnum+1);
-            }
-
-            fWrite.write('"'+randomstring+'"');
-            fWrite.write("\r\n");
-
-            for (var i=0; i<string_length; i++) {
-                var rnum = Math.floor(Math.random() * chars.length);
-                randomstring += chars.substring(rnum,rnum+1);
-            }
-
-            fWrite.write('"'+randomstring+'"');
-            fWrite.write("\r\n");
-
-            fWrite.close();
-        }
-
-        function createFile256_256_(){
-            var fileObject = new ActiveXObject("Scripting.FileSystemObject");
-
-            var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
-            var result = Math.floor(Math.random() * 30) + 1;
-            var string_length = result;
-            var randomstring = '';
-
-            var BitsradioVal = $(':radio[name="bits"]:checked').val();
-
-            fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\Hash_test\\LSH-256_256.txt", true);
-
-            fWrite.write("Algo_ID = LSH-" + BitsradioVal);
-            fWrite.write("\r\n");
-
-            fWrite.write("Message = 5");
-            fWrite.write("\r\n");
-
-            for (var i=0; i<string_length; i++) {
-                var rnum = Math.floor(Math.random() * chars.length);
-                randomstring += chars.substring(rnum,rnum+1);
-            }
-
-            fWrite.write('"'+randomstring+'"');
-            fWrite.write("\r\n");
-
-            for (var i=0; i<string_length; i++) {
-                var rnum = Math.floor(Math.random() * chars.length);
-                randomstring += chars.substring(rnum,rnum+1);
-            }
-
-            fWrite.write('"'+randomstring+'"');
-            fWrite.write("\r\n");
-
-            for (var i=0; i<string_length; i++) {
-                var rnum = Math.floor(Math.random() * chars.length);
-                randomstring += chars.substring(rnum,rnum+1);
-            }
-
-            fWrite.write('"'+randomstring+'"');
-            fWrite.write("\r\n");
-
-            for (var i=0; i<string_length; i++) {
-                var rnum = Math.floor(Math.random() * chars.length);
-                randomstring += chars.substring(rnum,rnum+1);
-            }
-
-            fWrite.write('"'+randomstring+'"');
-            fWrite.write("\r\n");
-
-            for (var i=0; i<string_length; i++) {
-                var rnum = Math.floor(Math.random() * chars.length);
-                randomstring += chars.substring(rnum,rnum+1);
-            }
-
-            fWrite.write('"'+randomstring+'"');
-            fWrite.write("\r\n");
-
-            fWrite.close();
-        }
-
-        function createFile512_224_(){
-            var fileObject = new ActiveXObject("Scripting.FileSystemObject");
-
-            var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
-            var result = Math.floor(Math.random() * 30) + 1;
-            var string_length = result;
-            var randomstring = '';
-
-            var BitsradioVal = $(':radio[name="bits"]:checked').val();
-
-            fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\Hash_test\\LSH-512_224.txt", true);
-
-            fWrite.write("Algo_ID = LSH-" + BitsradioVal);
-            fWrite.write("\r\n");
-
-            fWrite.write("Message = 5");
-            fWrite.write("\r\n");
-
-            for (var i=0; i<string_length; i++) {
-                var rnum = Math.floor(Math.random() * chars.length);
-                randomstring += chars.substring(rnum,rnum+1);
-            }
-
-            fWrite.write('"'+randomstring+'"');
-            fWrite.write("\r\n");
-
-            for (var i=0; i<string_length; i++) {
-                var rnum = Math.floor(Math.random() * chars.length);
-                randomstring += chars.substring(rnum,rnum+1);
-            }
-
-            fWrite.write('"'+randomstring+'"');
-            fWrite.write("\r\n");
-
-            for (var i=0; i<string_length; i++) {
-                var rnum = Math.floor(Math.random() * chars.length);
-                randomstring += chars.substring(rnum,rnum+1);
-            }
-
-            fWrite.write('"'+randomstring+'"');
-            fWrite.write("\r\n");
-
-            for (var i=0; i<string_length; i++) {
-                var rnum = Math.floor(Math.random() * chars.length);
-                randomstring += chars.substring(rnum,rnum+1);
-            }
-
-            fWrite.write('"'+randomstring+'"');
-            fWrite.write("\r\n");
-
-            for (var i=0; i<string_length; i++) {
-                var rnum = Math.floor(Math.random() * chars.length);
-                randomstring += chars.substring(rnum,rnum+1);
-            }
-
-            fWrite.write('"'+randomstring+'"');
-            fWrite.write("\r\n");
-
-            fWrite.close();
-        }
-
-        function createFile512_256_(){
-            var fileObject = new ActiveXObject("Scripting.FileSystemObject");
-
-            var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
-            var result = Math.floor(Math.random() * 30) + 1;
-            var string_length = result;
-            var randomstring = '';
-
-            var BitsradioVal = $(':radio[name="bits"]:checked').val();
-
-            fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\Hash_test\\LSH-512_256.txt", true);
-
-            fWrite.write("Algo_ID = LSH-" + BitsradioVal);
-            fWrite.write("\r\n");
-
-            fWrite.write("Message = 5");
-            fWrite.write("\r\n");
-
-            for (var i=0; i<string_length; i++) {
-                var rnum = Math.floor(Math.random() * chars.length);
-                randomstring += chars.substring(rnum,rnum+1);
-            }
-
-            fWrite.write('"'+randomstring+'"');
-            fWrite.write("\r\n");
-
-            for (var i=0; i<string_length; i++) {
-                var rnum = Math.floor(Math.random() * chars.length);
-                randomstring += chars.substring(rnum,rnum+1);
-            }
-
-            fWrite.write('"'+randomstring+'"');
-            fWrite.write("\r\n");
-
-            for (var i=0; i<string_length; i++) {
-                var rnum = Math.floor(Math.random() * chars.length);
-                randomstring += chars.substring(rnum,rnum+1);
-            }
-
-            fWrite.write('"'+randomstring+'"');
-            fWrite.write("\r\n");
-
-            for (var i=0; i<string_length; i++) {
-                var rnum = Math.floor(Math.random() * chars.length);
-                randomstring += chars.substring(rnum,rnum+1);
-            }
-
-            fWrite.write('"'+randomstring+'"');
-            fWrite.write("\r\n");
-
-            for (var i=0; i<string_length; i++) {
-                var rnum = Math.floor(Math.random() * chars.length);
-                randomstring += chars.substring(rnum,rnum+1);
-            }
-
-            fWrite.write('"'+randomstring+'"');
-            fWrite.write("\r\n");
-
-            fWrite.close();
-        }
-
-        function createFile512_384_(){
-            var fileObject = new ActiveXObject("Scripting.FileSystemObject");
-
-            var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
-            var result = Math.floor(Math.random() * 30) + 1;
-            var string_length = result;
-            var randomstring = '';
-
-            var BitsradioVal = $(':radio[name="bits"]:checked').val();
-
-            fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\Hash_test\\LSH-512_384.txt", true);
-
-            fWrite.write("Algo_ID = LSH-" + BitsradioVal);
-            fWrite.write("\r\n");
-
-            fWrite.write("Message = 5");
-            fWrite.write("\r\n");
-
-            for (var i=0; i<string_length; i++) {
-                var rnum = Math.floor(Math.random() * chars.length);
-                randomstring += chars.substring(rnum,rnum+1);
-            }
-
-            fWrite.write('"'+randomstring+'"');
-            fWrite.write("\r\n");
-
-            for (var i=0; i<string_length; i++) {
-                var rnum = Math.floor(Math.random() * chars.length);
-                randomstring += chars.substring(rnum,rnum+1);
-            }
-
-            fWrite.write('"'+randomstring+'"');
-            fWrite.write("\r\n");
-
-            for (var i=0; i<string_length; i++) {
-                var rnum = Math.floor(Math.random() * chars.length);
-                randomstring += chars.substring(rnum,rnum+1);
-            }
-
-            fWrite.write('"'+randomstring+'"');
-            fWrite.write("\r\n");
-
-            for (var i=0; i<string_length; i++) {
-                var rnum = Math.floor(Math.random() * chars.length);
-                randomstring += chars.substring(rnum,rnum+1);
-            }
-
-            fWrite.write('"'+randomstring+'"');
-            fWrite.write("\r\n");
-
-            for (var i=0; i<string_length; i++) {
-                var rnum = Math.floor(Math.random() * chars.length);
-                randomstring += chars.substring(rnum,rnum+1);
-            }
-
-            fWrite.write('"'+randomstring+'"');
-            fWrite.write("\r\n");
-
-            fWrite.close();
-        }
-
-        function createFile512_512_(){
-            var fileObject = new ActiveXObject("Scripting.FileSystemObject");
-
-            var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
-            var result = Math.floor(Math.random() * 30) + 1;
-            var string_length = result;
-            var randomstring = '';
-
-            var BitsradioVal = $(':radio[name="bits"]:checked').val();
-
-            fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\Hash_test\\LSH-512_512.txt", true);
-
-            fWrite.write("Algo_ID = LSH-" + BitsradioVal);
-            fWrite.write("\r\n");
-
-            fWrite.write("Message = 5");
-            fWrite.write("\r\n");
-
-            for (var i=0; i<string_length; i++) {
-                var rnum = Math.floor(Math.random() * chars.length);
-                randomstring += chars.substring(rnum,rnum+1);
-            }
-
-            fWrite.write('"'+randomstring+'"');
-            fWrite.write("\r\n");
-
-            for (var i=0; i<string_length; i++) {
-                var rnum = Math.floor(Math.random() * chars.length);
-                randomstring += chars.substring(rnum,rnum+1);
-            }
-
-            fWrite.write('"'+randomstring+'"');
-            fWrite.write("\r\n");
-
-            for (var i=0; i<string_length; i++) {
-                var rnum = Math.floor(Math.random() * chars.length);
-                randomstring += chars.substring(rnum,rnum+1);
-            }
-
-            fWrite.write('"'+randomstring+'"');
-            fWrite.write("\r\n");
-
-            for (var i=0; i<string_length; i++) {
-                var rnum = Math.floor(Math.random() * chars.length);
-                randomstring += chars.substring(rnum,rnum+1);
-            }
-
-            fWrite.write('"'+randomstring+'"');
-            fWrite.write("\r\n");
-
-            for (var i=0; i<string_length; i++) {
-                var rnum = Math.floor(Math.random() * chars.length);
-                randomstring += chars.substring(rnum,rnum+1);
-            }
-
-            fWrite.write('"'+randomstring+'"');
-            fWrite.write("\r\n");
-
-            fWrite.close();
-        }
-        
     </script>
 </body>
 </html>
