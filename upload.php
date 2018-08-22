@@ -16,7 +16,7 @@
         }
     </style>
 <body>
-    <p>Please click algorithm type and output bits!</p> <br>
+    <p>Please click algorithm type and output bits!!!!</p> <br>
         <table style="">
           <tr>
             <th>Algorithm types</th>
@@ -55,7 +55,7 @@
     
         <p id="demo">파일은 모두 압축 후 압축 파일 '.zip'를 올려주시기 바랍니다. 만약 header file이 포함 된 파일의 경우 header file도 올리셔야합니다. </p>
     
-        <form name="uploadForm" id="uploadForm" method="post" action="upload_process.php" enctype="multipart/form-data" onsubmit="return formSubmit(this);">
+        <form name="uploadForm" id="uploadForm_LSH" method="post" action="upload_process.php?algo=LSH" enctype="multipart/form-data" onsubmit="return formSubmit_LSH(this);">
             <div>
                 <label for="upfile">첨부파일</label>
                 <input type="file" name="upfile" id="upfile" />
@@ -63,11 +63,55 @@
             <input type="submit" value="업로드" />
         </form>
     
+        <form name="uploadForm" id="uploadForm_LEA" method="post" action="upload_process.php?algo=LEA" enctype="multipart/form-data" onsubmit="return formSubmit_LEA(this);" style="display: none;">
+            <div>
+                <label for="upfile2">첨부파일</label>
+                <input type="file" name="upfile2" id="upfile2" />
+            </div>
+            <input type="submit" value="업로드" />
+        </form>
+    
     <script type="text/javascript">
         
-        function formSubmit(f) {
+        function formSubmit_LSH(f) {
             var extArray = new Array('zip','c', 'h');
             var path = document.getElementById("upfile").value;
+            if(path == "") {
+                alert("파일을 선택해 주세요.");
+                return false;
+            }
+
+            var pos = path.indexOf(".");
+            if(pos < 0) {
+                alert("확장자가 없는파일 입니다.");
+                return false;
+            }
+
+            var ext = path.slice(path.indexOf(".") + 1).toLowerCase();
+            
+            console.log(ext);
+            
+            var file = ext.split('.');
+            
+            var checkExt = false;
+            for(var i = 0; i < extArray.length; i++) {
+                if(file[0] == extArray[i]) {
+                    checkExt = true;
+                    break;
+                }
+            }
+
+            if(checkExt == false) {
+                alert("업로드 할 수 없는 파일 확장자 입니다.");
+                return false;
+            }
+            
+            return true;
+        }
+        
+        function formSubmit_LEA(f) {
+            var extArray = new Array('zip','c', 'h');
+            var path = document.getElementById("upfile2").value;
             if(path == "") {
                 alert("파일을 선택해 주세요.");
                 return false;
@@ -107,9 +151,15 @@
             if (chkvalue == 'LSH'){
                 $('#POP_LSH').css('display', 'block');
                 $('#POP_LEA').css('display', 'none');
+                
+                $('#uploadForm_LSH').css('display', 'block');
+                $('#uploadForm_LEA').css('display', 'none');
             }else if(chkvalue == 'LEA'){
                 $('#POP_LSH').css('display', 'none');
                 $('#POP_LEA').css('display', 'block');
+                
+                $('#uploadForm_LSH').css('display', 'none');
+                $('#uploadForm_LEA').css('display', 'block');
             }
         });
 
@@ -131,8 +181,6 @@
                 createFile512_256_();
                 createFile512_384_();
                 createFile512_512_();
-
-                //magnifier();
 
                 <?php
                     $current = "";
@@ -176,37 +224,6 @@
                 
                 document.cookie = send_cookie;
             }
-        }
-
-        function magnifier(){
-            try{
-                var objWSH = new ActiveXObject("WScript.Shell"); 
-                var BitsradioVal = $(':radio[name="bits"]:checked').val();
-                var retval = objWSH.Run("C:\\Users\\kyu\\Desktop\\Kcryptoforum_CAVP\\LSH-"+BitsradioVal+".exe");  
-            }catch(exception){
-                alert("There is some error!");
-            }
-        } 
-
-        function randomString() {
-            var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
-            var result = Math.floor(Math.random() * 30) + 1;
-            var string_length = result;
-            var randomstring = '';
-
-            for (var i=0; i<string_length; i++) {
-            var rnum = Math.floor(Math.random() * chars.length);
-            randomstring += chars.substring(rnum,rnum+1);
-            }
-
-            //document.randform.randomfield.value = randomstring;
-
-            console.log(randomstring);
-            //return randomstring;
-        }
-        
-        function verify(){
-            console.log("tttt");
         }
 
         function myFunction() {

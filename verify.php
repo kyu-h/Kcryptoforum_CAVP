@@ -14,10 +14,17 @@
         //***********C파일만 골라서 가져오기**********//
         // PclZip 객체를 생성합니다. 
         // 목록을 가져올 파일을 선택합니다. 
-        
-        //$zipfile = new PclZip('Hash_test/LSH_NEW.zip');  
-        $zipfile = new PclZip('Hash_test/LEA_NEW.zip');  
     
+        $algo = $_GET['algo'];
+    
+        echo $algo."<br>";
+        
+        if($algo == "LSH"){
+            $zipfile = new PclZip('Hash_test/LSH_NEW.zip');      
+        }else if($algo == "LEA"){
+            $zipfile = new PclZip('Hash_test/LEA_NEW.zip');      
+        }
+        
         //**********압축 풀기************//
         //$zipfile = new PclZip('test.zip');
     
@@ -67,9 +74,13 @@
             shell_exec("gcc -c " . $CC[$i]);
         }
         
-        shell_exec("gcc -o user_test_lea.exe " . $Cfinal);
-        shell_exec("user_test_lea.exe");
-    
+        if($algo == "LSH"){
+            shell_exec("gcc -o user_test_lsh.exe " . $Cfinal);
+            shell_exec("user_test_lsh.exe");    
+        }else if($algo == "LEA"){
+            shell_exec("gcc -o user_test_lea.exe " . $Cfinal);
+            shell_exec("user_test_lea.exe");    
+        }
     ?>
         
     <script>
@@ -83,6 +94,7 @@
         
         if(algo == "LSH"){
             console.log("LSH");
+            
             var filename_rsp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\Hash_test\\LSH-"+bits+"_rsp.txt";
             var filename_cp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\Hash_test\\LSH-"+bits+"_cp.txt";
             
@@ -106,14 +118,14 @@
             readFile_rsp(filename_rsp);
             document.writeln("<br /><br /><br />");
             document.writeln("User system output file <br>");
-            readFile_cp(filename_cp);    
+            readFile_cp(filename_cp);
 
             $(window).ready(function(){
                 console.log("load");
 
-            });    
+            }); 
         }
-
+        
         function readFile_rsp(filename_rsp){
             console.log(filename_rsp);
             var fso = new ActiveXObject("Scripting.FileSystemObject");    
