@@ -41,7 +41,7 @@ void CBC_enc_128(unsigned char* m, unsigned char* c, int mLength, unsigned char*
     unsigned char* Y = (unsigned char*)malloc(sizeof(unsigned char*)*BLOCK_LENGTH);
     unsigned char* C0 = (unsigned char*)malloc(sizeof(unsigned char*)*BLOCK_LENGTH);
 
-    printf(" ##############################  CBC Encrypt ##################################\n\n");
+    //printf(" ##############################  CBC Encrypt ##################################\n\n");
 
     for(i=0; i<BLOCK_LENGTH; ++i)
     {
@@ -50,43 +50,43 @@ void CBC_enc_128(unsigned char* m, unsigned char* c, int mLength, unsigned char*
 
     for(i=0; i<bNum; ++i)
     {
-        printf(" ===============================  BLOCK %d ===============================\n", i);
+        /*printf(" ===============================  BLOCK %d ===============================\n", i);
         printf("Plaintext P%d \t = ", i);
         for(j=0; j<BLOCK_LENGTH; ++j)
         {
             printf( "%2x", m[j+(16*i)]);
         }
         printf("\n");
-        printf(" Input I%d \t = ", i);
+        printf(" Input I%d \t = ", i);*/
         for(j=0; j<BLOCK_LENGTH; ++j)
         {
             if(i==0)
             {
                 X[j] = m[j+(16*i)] ^ C0[j];
-                printf(" %2x", X[j]);
+                //printf(" %2x", X[j]);
             }else
             {
                 X[j] = m[j+(16*i)] ^ c[j+(16*(i-1))];
-                printf(" %2x", X[j]);
+                //printf(" %2x", X[j]);
             }
         }
-        printf("\n");
+        //printf("\n");
         KeySchedule_enc_128(key);
         encrypt_128(X,Y);
-        printf(" Output O%d \t = ", i);
-        for(j=0; j<BLOCK_LENGTH; ++j)
+        //printf(" Output O%d \t = ", i);
+        /*for(j=0; j<BLOCK_LENGTH; ++j)
         {
             printf(" %2x", Y[j]);
         }
         printf("\n");
 
-        printf(" Ciphertext C%d \t = ", i);
+        printf(" Ciphertext C%d \t = ", i);*/
         for(j=0; j<BLOCK_LENGTH; ++j)
         {
             c[j+ (16 * i)] = Y[j];
-            printf(" %2x", c[j+(16*i)]);
+            //printf(" %2x", c[j+(16*i)]);
         }
-        printf("\n\n\n");
+        //printf("\n\n\n");
     }
 }
 
@@ -154,7 +154,7 @@ void CBC_enc_192(unsigned char* m, unsigned char* c, int mLength, unsigned char*
     unsigned char* Y = (unsigned char*)malloc(sizeof(unsigned char*)*BLOCK_LENGTH);
     unsigned char* C0 = (unsigned char*)malloc(sizeof(unsigned char*)*BLOCK_LENGTH);
 
-    printf(" ##############################  CBC Encrypt ##################################\n\n");
+    //printf(" ##############################  CBC Encrypt ##################################\n\n");
 
     for(i=0; i<BLOCK_LENGTH; ++i)
     {
@@ -163,43 +163,43 @@ void CBC_enc_192(unsigned char* m, unsigned char* c, int mLength, unsigned char*
 
     for(i=0; i<bNum; ++i)
     {
-        printf(" ===============================  BLOCK %d ===============================\n", i);
+        /*printf(" ===============================  BLOCK %d ===============================\n", i);
         printf("Plaintext P%d \t = ", i);
         for(j=0; j<BLOCK_LENGTH; ++j)
         {
             printf( "%2x", m[j+(16*i)]);
         }
         printf("\n");
-        printf(" Input I%d \t = ", i);
+        printf(" Input I%d \t = ", i);*/
         for(j=0; j<BLOCK_LENGTH; ++j)
         {
             if(i==0)
             {
                 X[j] = m[j+(16*i)] ^ C0[j];
-                printf(" %2x", X[j]);
+                //printf(" %2x", X[j]);
             }else
             {
                 X[j] = m[j+(16*i)] ^ c[j+(16*(i-1))];
-                printf(" %2x", X[j]);
+                //printf(" %2x", X[j]);
             }
         }
-        printf("\n");
+        //printf("\n");
         KeySchedule_enc_192(key);
         encrypt_192(X,Y);
-        printf(" Output O%d \t = ", i);
-        for(j=0; j<BLOCK_LENGTH; ++j)
+        //printf(" Output O%d \t = ", i);
+        /*for(j=0; j<BLOCK_LENGTH; ++j)
         {
             printf(" %2x", Y[j]);
         }
         printf("\n");
 
-        printf(" Ciphertext C%d \t = ", i);
+        printf(" Ciphertext C%d \t = ", i);*/
         for(j=0; j<BLOCK_LENGTH; ++j)
         {
             c[j+ (16 * i)] = Y[j];
-            printf(" %2x", c[j+(16*i)]);
+            //printf(" %2x", c[j+(16*i)]);
         }
-        printf("\n\n\n");
+        //printf("\n\n\n");
     }
 }
 void CBC_dec_192(unsigned char* m, unsigned char* p, int mLength, unsigned char* key, unsigned char* iv)
@@ -266,7 +266,7 @@ void CBC_enc_256(unsigned char* m, unsigned char* c, int mLength, unsigned char*
     unsigned char* Y = (unsigned char*)malloc(sizeof(unsigned char*)*BLOCK_LENGTH);
     unsigned char* C0 = (unsigned char*)malloc(sizeof(unsigned char*)*BLOCK_LENGTH);
 
-    printf(" ##############################  CBC Encrypt ##################################\n\n");
+    //printf(" ##############################  CBC Encrypt ##################################\n\n");
 
     for(i=0; i<BLOCK_LENGTH; ++i)
     {
@@ -275,43 +275,43 @@ void CBC_enc_256(unsigned char* m, unsigned char* c, int mLength, unsigned char*
 
     for(i=0; i<bNum; ++i)
     {
-        printf(" ===============================  BLOCK %d ===============================\n", i);
+        /*printf(" ===============================  BLOCK %d ===============================\n", i);
         printf("Plaintext P%d \t = ", i);
         for(j=0; j<BLOCK_LENGTH; ++j)
         {
             printf( "%2x", m[j+(16*i)]);
         }
         printf("\n");
-        printf(" Input I%d \t = ", i);
+        printf(" Input I%d \t = ", i);*/
         for(j=0; j<BLOCK_LENGTH; ++j)
         {
             if(i==0)
             {
                 X[j] = m[j+(16*i)] ^ C0[j];
-                printf(" %2x", X[j]);
+                //printf(" %2x", X[j]);
             }else
             {
                 X[j] = m[j+(16*i)] ^ c[j+(16*(i-1))];
-                printf(" %2x", X[j]);
+                //printf(" %2x", X[j]);
             }
         }
-        printf("\n");
+        //printf("\n");
         KeySchedule_enc_256(key);
         encrypt_256(X,Y);
-        printf(" Output O%d \t = ", i);
-        for(j=0; j<BLOCK_LENGTH; ++j)
+        //printf(" Output O%d \t = ", i);
+        /*for(j=0; j<BLOCK_LENGTH; ++j)
         {
             printf(" %2x", Y[j]);
         }
-        printf("\n");
+        printf("\n");*/
 
-        printf(" Ciphertext C%d \t = ", i);
+        //printf(" Ciphertext C%d \t = ", i);
         for(j=0; j<BLOCK_LENGTH; ++j)
         {
             c[j+ (16 * i)] = Y[j];
-            printf(" %2x", c[j+(16*i)]);
+            //printf(" %2x", c[j+(16*i)]);
         }
-        printf("\n\n\n");
+        //printf("\n\n\n");
     }
 }
 

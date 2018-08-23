@@ -621,7 +621,7 @@ void LEA_CBC_128(const char *inputFileName, const char *outputFileName){
 	fgets(PlainText[0], MAX_MARKER_LEN, fp_in); //skip line
 	for(int i=0; i<PlainNum; i++){
 		fgets(PlainText[i], MAX_MARKER_LEN, fp_in);
-		printf("%s", PlainText[i]);
+		//printf("%s", PlainText[i]);
 	}
 	FindMarker(fp_in, "iv");
 	fscanf(fp_in, " %c %d", &str, &IVNum);
@@ -629,7 +629,7 @@ void LEA_CBC_128(const char *inputFileName, const char *outputFileName){
 	fgets(IV[0], MAX_MARKER_LEN, fp_in); //skip line
 	for(int i=0; i<IVNum; i++){
 		fgets(IV[i], MAX_MARKER_LEN, fp_in);
-		printf("%s", IV[i]);
+		//printf("%s", IV[i]);
 	}
 
 	FindMarker(fp_in, "key");
@@ -638,7 +638,7 @@ void LEA_CBC_128(const char *inputFileName, const char *outputFileName){
 	fgets(Key[0], MAX_MARKER_LEN, fp_in); //skip line
 	for(int i=0; i<KeyNum; i++){
 		fgets(Key[i], MAX_MARKER_LEN, fp_in);
-		printf("%s", Key[i]);
+		//printf("%s", Key[i]);
 	}
 
 	if(PlainNum != KeyNum && KeyNum != IVNum)
@@ -662,12 +662,12 @@ void LEA_CBC_128(const char *inputFileName, const char *outputFileName){
 			str_Plain = strtok(NULL, ", ");
 		}
 
-		printf("Plain: ");
+		/*printf("Plain: ");
 		for(int m=0; m<TEXT_BYTE_LENGTH; m++){
 			if(split_PlainText[m] != NULL){
 				printf("%s ", split_PlainText[m]);
 			}
-		}printf("\n");
+		}printf("\n");*/
 
 		//**********string to Hex**********//
 		for(int b = 0 ; b < TEXT_BYTE_LENGTH; b++){
@@ -695,13 +695,13 @@ void LEA_CBC_128(const char *inputFileName, const char *outputFileName){
 			str_IV = strtok(NULL, ", ");
 		}
 
-		printf("IV: ");
+		/*printf("IV: ");
 		for(int m=0; m<16; m++){
 			if(split_IV[m] != NULL){
 				printf("%s ", split_IV[m]);
 			}
 		}
-		printf("\n");
+		printf("\n");*/
 
 		//**********string to Hex**********//
 		for(int b = 0 ; b < 16; b++){
@@ -728,13 +728,13 @@ void LEA_CBC_128(const char *inputFileName, const char *outputFileName){
 			str_Key = strtok(NULL, ", ");
 		}
 
-		printf("Key: ");
+		/*printf("Key: ");
 		for(int m=0; m<16; m++){
 			if(split_Key[m] != NULL){
 				printf("%s ", split_Key[m]);
 			}
 		}
-		printf("\n");
+		printf("\n");*/
 
 		//**********string to Hex**********//
 		for(int b = 0 ; b < 16; b++){
@@ -798,7 +798,7 @@ void LEA_CBC_192(const char *inputFileName, const char *outputFileName){
 	fgets(PlainText[0], MAX_MARKER_LEN, fp_in); //skip line
 	for(int i=0; i<PlainNum; i++){
 		fgets(PlainText[i], MAX_MARKER_LEN, fp_in);
-		printf("%s", PlainText[i]);
+		//printf("%s", PlainText[i]);
 	}
 	FindMarker(fp_in, "iv");
 	fscanf(fp_in, " %c %d", &str, &IVNum);
@@ -806,7 +806,7 @@ void LEA_CBC_192(const char *inputFileName, const char *outputFileName){
 	fgets(IV[0], MAX_MARKER_LEN, fp_in); //skip line
 	for(int i=0; i<IVNum; i++){
 		fgets(IV[i], MAX_MARKER_LEN, fp_in);
-		printf("%s", IV[i]);
+		//printf("%s", IV[i]);
 	}
 
 	FindMarker(fp_in, "key");
@@ -815,7 +815,7 @@ void LEA_CBC_192(const char *inputFileName, const char *outputFileName){
 	fgets(Key[0], MAX_MARKER_LEN, fp_in); //skip line
 	for(int i=0; i<KeyNum; i++){
 		fgets(Key[i], MAX_MARKER_LEN, fp_in);
-		printf("%s", Key[i]);
+		//printf("%s", Key[i]);
 	}
 
 	if(PlainNum != KeyNum && KeyNum != IVNum)
@@ -839,12 +839,12 @@ void LEA_CBC_192(const char *inputFileName, const char *outputFileName){
 			str_Plain = strtok(NULL, ", ");
 		}
 
-		printf("Plain: ");
+		/*printf("Plain: ");
 		for(int m=0; m<TEXT_BYTE_LENGTH; m++){
 			if(split_PlainText[m] != NULL){
 				printf("%s ", split_PlainText[m]);
 			}
-		}printf("\n");
+		}printf("\n");*/
 
 		//**********string to Hex**********//
 		for(int b = 0 ; b < TEXT_BYTE_LENGTH; b++){
@@ -872,13 +872,13 @@ void LEA_CBC_192(const char *inputFileName, const char *outputFileName){
 			str_IV = strtok(NULL, ", ");
 		}
 
-		printf("IV: ");
+		/*printf("IV: ");
 		for(int m=0; m<16; m++){
 			if(split_IV[m] != NULL){
 				printf("%s ", split_IV[m]);
 			}
 		}
-		printf("\n");
+		printf("\n");*/
 
 		//**********string to Hex**********//
 		for(int b = 0 ; b < 16; b++){
@@ -905,13 +905,13 @@ void LEA_CBC_192(const char *inputFileName, const char *outputFileName){
 			str_Key = strtok(NULL, ", ");
 		}
 
-		printf("Key: ");
+		/*printf("Key: ");
 		for(int m=0; m<24; m++){
 			if(split_Key[m] != NULL){
 				printf("%s ", split_Key[m]);
 			}
 		}
-		printf("\n");
+		printf("\n");*/
 
 		//**********string to Hex**********//
 		for(int b = 0 ; b < 24; b++){
@@ -975,7 +975,7 @@ void LEA_CBC_256(const char *inputFileName, const char *outputFileName){
 	fgets(PlainText[0], MAX_MARKER_LEN, fp_in); //skip line
 	for(int i=0; i<PlainNum; i++){
 		fgets(PlainText[i], MAX_MARKER_LEN, fp_in);
-		printf("%s", PlainText[i]);
+		//printf("%s", PlainText[i]);
 	}
 	FindMarker(fp_in, "iv");
 	fscanf(fp_in, " %c %d", &str, &IVNum);
@@ -983,7 +983,7 @@ void LEA_CBC_256(const char *inputFileName, const char *outputFileName){
 	fgets(IV[0], MAX_MARKER_LEN, fp_in); //skip line
 	for(int i=0; i<IVNum; i++){
 		fgets(IV[i], MAX_MARKER_LEN, fp_in);
-		printf("%s", IV[i]);
+		//printf("%s", IV[i]);
 	}
 
 	FindMarker(fp_in, "key");
@@ -992,7 +992,7 @@ void LEA_CBC_256(const char *inputFileName, const char *outputFileName){
 	fgets(Key[0], MAX_MARKER_LEN, fp_in); //skip line
 	for(int i=0; i<KeyNum; i++){
 		fgets(Key[i], MAX_MARKER_LEN, fp_in);
-		printf("%s", Key[i]);
+		//printf("%s", Key[i]);
 	}
 
 	if(PlainNum != KeyNum && KeyNum != IVNum)
@@ -1016,12 +1016,12 @@ void LEA_CBC_256(const char *inputFileName, const char *outputFileName){
 			str_Plain = strtok(NULL, ", ");
 		}
 
-		printf("Plain: ");
+		/*printf("Plain: ");
 		for(int m=0; m<TEXT_BYTE_LENGTH; m++){
 			if(split_PlainText[m] != NULL){
 				printf("%s ", split_PlainText[m]);
 			}
-		}printf("\n");
+		}printf("\n");*/
 
 		//**********string to Hex**********//
 		for(int b = 0 ; b < TEXT_BYTE_LENGTH; b++){
@@ -1049,13 +1049,13 @@ void LEA_CBC_256(const char *inputFileName, const char *outputFileName){
 			str_IV = strtok(NULL, ", ");
 		}
 
-		printf("IV: ");
+		/*printf("IV: ");
 		for(int m=0; m<16; m++){
 			if(split_IV[m] != NULL){
 				printf("%s ", split_IV[m]);
 			}
 		}
-		printf("\n");
+		printf("\n");*/
 
 		//**********string to Hex**********//
 		for(int b = 0 ; b < 16; b++){
@@ -1082,13 +1082,13 @@ void LEA_CBC_256(const char *inputFileName, const char *outputFileName){
 			str_Key = strtok(NULL, ", ");
 		}
 
-		printf("Key: ");
+		/*printf("Key: ");
 		for(int m=0; m<32; m++){
 			if(split_Key[m] != NULL){
 				printf("%s ", split_Key[m]);
 			}
 		}
-		printf("\n");
+		printf("\n");*/
 
 		//**********string to Hex**********//
 		for(int b = 0 ; b < 32; b++){
@@ -1502,7 +1502,7 @@ int main()
 	}
 
     int num = 1;
-    int config_mod = 2;
+    int config_mod = 1;
 
     FILE *fp_in, *output_file;
 
