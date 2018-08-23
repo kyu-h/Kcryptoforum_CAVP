@@ -89,6 +89,12 @@
         
         var algo = split_cookie[0];
         var bits = split_cookie[1];
+        var config = "";
+        
+        if(algo == "LEA"){
+            config = split_cookie[2];
+            console.log(config);
+        }
         
         var text_rsp = "";
         var text_cp = "";
@@ -113,11 +119,49 @@
                 console.log("load");
 
             });    
-        }else if (algo == "LEA"){
+        }else if (algo == "LEA" && config == "ECB"){
             console.log("LEA");
             var input = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA-"+bits+".txt";
             var filename_rsp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA-"+bits+"_rsp.txt";
             var filename_cp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA-"+bits+"_cp.txt";
+            
+            document.writeln("Input file<br>");
+            inputFile(input);
+            document.writeln("<br /><br /><br />");
+            document.writeln("Local system output file <br>");
+            readFile_rsp(filename_rsp);
+            document.writeln("<br /><br /><br />");
+            document.writeln("User system output file <br>");
+            readFile_cp(filename_cp);
+
+            $(window).ready(function(){
+                console.log("load");
+
+            }); 
+        }else if (algo == "LEA" && config == "CBC"){
+            console.log("LEA");
+            var input = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA-"+bits+".txt";
+            var filename_rsp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA_CBC-"+bits+"_rsp.txt";
+            var filename_cp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA_CBC-"+bits+"_cp.txt";
+            
+            document.writeln("Input file<br>");
+            inputFile(input);
+            document.writeln("<br /><br /><br />");
+            document.writeln("Local system output file <br>");
+            readFile_rsp(filename_rsp);
+            document.writeln("<br /><br /><br />");
+            document.writeln("User system output file <br>");
+            readFile_cp(filename_cp);
+
+            $(window).ready(function(){
+                console.log("load");
+
+            }); 
+        }else if (algo == "LEA" && config == "CTR"){
+            console.log("LEA");
+            var input = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA-"+bits+".txt";
+            var filename_rsp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA_CTR-"+bits+"_rsp.txt";
+            var filename_cp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA_CTR-"+bits+"_cp.txt";
             
             document.writeln("Input file<br>");
             inputFile(input);

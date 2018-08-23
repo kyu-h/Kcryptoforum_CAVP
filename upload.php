@@ -16,11 +16,11 @@
         }
     </style>
 <body>
-    <p>Please click algorithm type and output bits!</p> <br>    
+    <p>Please click algorithm type and output bits.</p>
     <table style="">
       <tr>
         <th>Algorithm types</th>
-        <th>Output Bits</th> 
+        <th>Output Bits</th>  
       </tr>
       <tr>
         <td>
@@ -43,10 +43,20 @@
                 <input type="radio" name="bits" value="192"> 192<br>
                 <input type="radio" name="bits" value="256"> 256
             </div>
-        </td>
+        </td>  
       </tr>
     </table>
-        
+    <div id="LEA_Config" style="display: none;">
+        <table >
+            <th>Config Mode</th>
+            <td>
+                <input type="radio" name="config" value="ECB" checked="checked"> ECB<br>
+                <input type="radio" name="config" value="CBC"> CBC<br>
+                <input type="radio" name="config" value="CTR"> CTR
+            </td>
+        </div>
+        </table>
+    </div>
     <form method="POST">
         <input type = "button" id="button1" value="Send to Server" onclick="click_btn()">
     </form>
@@ -88,6 +98,8 @@
                 
                 $('#uploadForm_LSH').css('display', 'none');
                 $('#uploadForm_LEA').css('display', 'block');
+                
+                $('#LEA_Config').css('display', 'block');
             }
         }
         
@@ -172,18 +184,23 @@
                 
                 $('#uploadForm_LSH').css('display', 'block');
                 $('#uploadForm_LEA').css('display', 'none');
+                
+                $('#LEA_Config').css('display', 'none');
             }else if(chkvalue == 'LEA'){
                 $('#POP_LSH').css('display', 'none');
                 $('#POP_LEA').css('display', 'block');
                 
                 $('#uploadForm_LSH').css('display', 'none');
                 $('#uploadForm_LEA').css('display', 'block');
+                
+                $('#LEA_Config').css('display', 'block');
             }
         });
 
         function click_btn(){
             var AlgoradioVal = $(':radio[name="algo"]:checked').val();
             var BitsradioVal = $(':radio[name="bits"]:checked').val();
+            var config_mode = $(':radio[name="config"]:checked').val();
             
             var send_cookie = AlgoradioVal + "/" + BitsradioVal;
             
@@ -223,7 +240,12 @@
                 createFileLEA128();
                 createFileLEA192();
                 createFileLEA256();
-                console.log("cccc");
+                createFileLEA_CBC128();
+                createFileLEA_CBC192();
+                createFileLEA_CBC256();
+                createFileLEA_CTR128();
+                createFileLEA_CTR192();
+                createFileLEA_CTR256();
                 
                 <?php
                     $current = "";
@@ -240,13 +262,13 @@
                     $answer = shell_exec("lea_main.exe");
                 ?>
                 
-                document.cookie = send_cookie;
+                var LEA_send_cookie = send_cookie + "/" + config_mode;
+                
+                document.cookie = LEA_send_cookie;
                 
                 $('#uploadForm_LSH').css('display', 'none');
                 $('#uploadForm_LEA').css('display', 'block');
                 location.reload(); 
-                
-                aa();
             }
         }
 
