@@ -1,4 +1,4 @@
-Algo_ID = LEA-192
+Algo_ID = LEA_CTR-192
 PlainText = 5
 "D7, 6D, 0D, 18, 32, 7E, C5, 62, B1, 5E, 6B, C3, 65, AC, 0C, 0F, 8D, 41, E0, BB, 93, 85, 68, AE, EB, FD, 92, ED, 1A, FF, A0, 96, 39, 4D, 20, FC, 52, 77, DD, FC, 4D, E8, B0, FC, E1, EB, 2B, 93, D4, AE, 40, EF, 47, 68, C6, 13, B5, 0B, 89, 42, F7, D4, B9, B3"
 "D7, 6D, 0D, 18, 32, 7E, C5, 62, B1, 5E, 6B, C3, 65, AC, 0C, 0F, 8D, 41, E0, BB, 93, 85, 68, AE, EB, FD, 92, ED, 1A, FF, A0, 96, 39, 4D, 20, FC, 52, 77, DD, FC, 4D, E8, B0, FC, E1, EB, 2B, 93, D4, AE, 40, EF, 47, 68, C6, 13, B5, 0B, 89, 42, 27, D4, B9, B3"

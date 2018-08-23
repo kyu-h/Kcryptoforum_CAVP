@@ -257,9 +257,9 @@
                     shell_exec("gcc -c LEA_Default.c");
                     shell_exec("gcc -c LEA_ConfigMode.c");
 
-                    shell_exec("gcc -o lea_main.exe LEA_Main.o LEA_Default.o LEA_ConfigMode.o");
+                    shell_exec("gcc -o lea_Main.exe LEA_Main.o LEA_Default.o LEA_ConfigMode.o");
 
-                    $answer = shell_exec("lea_main.exe");
+                    $answer = shell_exec("lea_Main.exe");
                 ?>
                 
                 var LEA_send_cookie = send_cookie + "/" + config_mode;

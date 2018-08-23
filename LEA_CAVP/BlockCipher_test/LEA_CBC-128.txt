@@ -1,4 +1,4 @@
-Algo_ID = LEA-128
+Algo_ID = LEA_CBC-128
 PlainText = 100
 "55, 0f, 65, 22, 38, e7, 43, 34, 28, 0f, c3, 35, 2a, b7, d2, 0b, c2, 1c, f5, 37, e9, a4, 4d, 33, 74, b2, b2, ce, d5, d7, 4f, 85, 69, b7, 5b, 95, b2, ef, 75, 54, d9, d4, 75, 29, 63, 3c, ea, 86, 68, 4d, 6a, 7b, 20, ad, 17, 3e, 65, 89, b7, a7, e5, cd, 4d, cf"
 "a6, df, 28, 45, 97, c0, ba, 11, fa, d8, 61, e3, 2b, 94, f4, c1, 1b, fb, d3, 6e, cc, e4, 1c, b3, b7, f2, de, 1e, 42, 75, 3e, cb, c2, 25, ee, c0, 80, 5d, a5, ab, 6a, 2f, 9d, 65, ad, ea, 4d, aa, d2, a5, 32, 18, de, 5e, 07, 3a, 72, 6f, 40, b8, ba, df, 3e, fd"

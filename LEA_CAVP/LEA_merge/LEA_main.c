@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "LEA.h"
-#include "ConfigMode.h"
+#include "LEA_ConfigMode.h"
+#include "LEA_default.h"
 
 #define TEXT_BYTE_LENGTH 64
 #define MAX_MARKER_LEN 4096
@@ -50,9 +50,9 @@ void LEA_CTR_128(const char *inputFileName, const char *outputFileName){
     char *str_Key = NULL;
     char *str_ctr = NULL;
 
-    unsigned char *split_PlainText[TEXT_BYTE_LENGTH] = {NULL, };
-    unsigned char *split_Key[16] = {NULL, };
-    unsigned char *split_ctr[16] = {NULL, };
+    unsigned char split_PlainText[TEXT_BYTE_LENGTH][2] = {NULL, };
+    unsigned char split_Key[16][2] = {NULL, };
+    unsigned char split_ctr[16][2] = {NULL, };
 
     unsigned char Hex_Plain[TEXT_BYTE_LENGTH] = {NULL, };
     unsigned char Hex_Key[16] = {NULL, };
@@ -79,7 +79,7 @@ void LEA_CTR_128(const char *inputFileName, const char *outputFileName){
 	fgets(PlainText[0], MAX_MARKER_LEN, fp_in); //skip line
 	for(int i=0; i<PlainNum; i++){
 		fgets(PlainText[i], MAX_MARKER_LEN, fp_in);
-		printf("%s", PlainText[i]);
+		//printf("%s", PlainText[i]);
 	}
 	FindMarker(fp_in, "ctr");
 	fscanf(fp_in, " %c %d", &str, &IVNum);
@@ -87,7 +87,7 @@ void LEA_CTR_128(const char *inputFileName, const char *outputFileName){
 	fgets(Ctr[0], MAX_MARKER_LEN, fp_in); //skip line
 	for(int i=0; i<IVNum; i++){
 		fgets(Ctr[i], MAX_MARKER_LEN, fp_in);
-		printf("%s", Ctr[i]);
+		//printf("%s", Ctr[i]);
 	}
 
 	FindMarker(fp_in, "key");
@@ -96,7 +96,7 @@ void LEA_CTR_128(const char *inputFileName, const char *outputFileName){
 	fgets(Key[0], MAX_MARKER_LEN, fp_in); //skip line
 	for(int i=0; i<KeyNum; i++){
 		fgets(Key[i], MAX_MARKER_LEN, fp_in);
-		printf("%s", Key[i]);
+		//printf("%s", Key[i]);
 	}
 
 	if(PlainNum != KeyNum && KeyNum != IVNum)
@@ -116,16 +116,20 @@ void LEA_CTR_128(const char *inputFileName, const char *outputFileName){
 		str_Plain = strtok(PlainText[i], ", ");
 
 		while(str_Plain != NULL){
-			split_PlainText[num++] = str_Plain;
+			split_PlainText[num][0] = str_Plain[0];
+			split_PlainText[num++][1] = str_Plain[1];
 			str_Plain = strtok(NULL, ", ");
 		}
 
-		printf("Plain: ");
+		/*printf("Plain: ");
 		for(int m=0; m<TEXT_BYTE_LENGTH; m++){
-			if(split_PlainText[m] != NULL){
-				printf("%s ", split_PlainText[m]);
+			for(int n = 0 ; n < 2 ; n++)
+			{
+				if(split_PlainText[m][n] != NULL){
+								printf("%c", split_PlainText[m][n]);
+				} printf(" ");
 			}
-		}printf("\n");
+		}printf("\n");*/
 
 		//**********string to Hex**********//
 		for(int b = 0 ; b < TEXT_BYTE_LENGTH; b++){
@@ -149,17 +153,18 @@ void LEA_CTR_128(const char *inputFileName, const char *outputFileName){
 		str_ctr = strtok(Ctr[i], ", ");
 
 		while(str_ctr != NULL){
-			split_ctr[num++] = str_ctr;
+			split_ctr[num][0] = str_ctr[0];
+			split_ctr[num++][1] = str_ctr[1];
 			str_ctr = strtok(NULL, ", ");
 		}
 
-		printf("IV: ");
+		/*printf("IV: ");
 		for(int m=0; m<16; m++){
 			if(split_ctr[m] != NULL){
 				printf("%s ", split_ctr[m]);
 			}
 		}
-		printf("\n");
+		printf("\n");*/
 
 		//**********string to Hex**********//
 		for(int b = 0 ; b < 16; b++){
@@ -182,17 +187,18 @@ void LEA_CTR_128(const char *inputFileName, const char *outputFileName){
 		str_Key = strtok(Key[i], ", ");
 
 		while(str_Key != NULL){
-			split_Key[num++] = str_Key;
+			split_Key[num][0] = str_Key[0];
+			split_Key[num++][1] = str_Key[1];
 			str_Key = strtok(NULL, ", ");
 		}
 
-		printf("Key: ");
+		/*printf("Key: ");
 		for(int m=0; m<16; m++){
 			if(split_Key[m] != NULL){
 				printf("%s ", split_Key[m]);
 			}
 		}
-		printf("\n");
+		printf("\n");*/
 
 		//**********string to Hex**********//
 		for(int b = 0 ; b < 16; b++){
@@ -226,9 +232,9 @@ void LEA_CTR_192(const char *inputFileName, const char *outputFileName){
     char *str_Key = NULL;
     char *str_ctr = NULL;
 
-    unsigned char *split_PlainText[TEXT_BYTE_LENGTH] = {NULL, };
-    unsigned char *split_Key[32] = {NULL, };
-    unsigned char *split_ctr[16] = {NULL, };
+    unsigned char split_PlainText[TEXT_BYTE_LENGTH][2] = {NULL, };
+    unsigned char split_Key[32][2] = {NULL, };
+    unsigned char split_ctr[16][2] = {NULL, };
 
     unsigned char Hex_Plain[TEXT_BYTE_LENGTH] = {NULL, };
     unsigned char Hex_Key[32] = {NULL, };
@@ -255,7 +261,7 @@ void LEA_CTR_192(const char *inputFileName, const char *outputFileName){
 	fgets(PlainText[0], MAX_MARKER_LEN, fp_in); //skip line
 	for(int i=0; i<PlainNum; i++){
 		fgets(PlainText[i], MAX_MARKER_LEN, fp_in);
-		printf("%s", PlainText[i]);
+		//printf("%s", PlainText[i]);
 	}
 	FindMarker(fp_in, "ctr");
 	fscanf(fp_in, " %c %d", &str, &IVNum);
@@ -263,7 +269,7 @@ void LEA_CTR_192(const char *inputFileName, const char *outputFileName){
 	fgets(Ctr[0], MAX_MARKER_LEN, fp_in); //skip line
 	for(int i=0; i<IVNum; i++){
 		fgets(Ctr[i], MAX_MARKER_LEN, fp_in);
-		printf("%s", Ctr[i]);
+		//printf("%s", Ctr[i]);
 	}
 
 	FindMarker(fp_in, "key");
@@ -272,7 +278,7 @@ void LEA_CTR_192(const char *inputFileName, const char *outputFileName){
 	fgets(Key[0], MAX_MARKER_LEN, fp_in); //skip line
 	for(int i=0; i<KeyNum; i++){
 		fgets(Key[i], MAX_MARKER_LEN, fp_in);
-		printf("%s", Key[i]);
+		//printf("%s", Key[i]);
 	}
 
 	if(PlainNum != KeyNum && KeyNum != IVNum)
@@ -292,16 +298,17 @@ void LEA_CTR_192(const char *inputFileName, const char *outputFileName){
 		str_Plain = strtok(PlainText[i], ", ");
 
 		while(str_Plain != NULL){
-			split_PlainText[num++] = str_Plain;
+			split_PlainText[num][0] = str_Plain[0];
+			split_PlainText[num++][1] = str_Plain[1];
 			str_Plain = strtok(NULL, ", ");
 		}
 
-		printf("Plain: ");
+		/*printf("Plain: ");
 		for(int m=0; m<TEXT_BYTE_LENGTH; m++){
 			if(split_PlainText[m] != NULL){
 				printf("%s ", split_PlainText[m]);
 			}
-		}printf("\n");
+		}printf("\n");*/
 
 		//**********string to Hex**********//
 		for(int b = 0 ; b < TEXT_BYTE_LENGTH; b++){
@@ -325,17 +332,18 @@ void LEA_CTR_192(const char *inputFileName, const char *outputFileName){
 		str_ctr = strtok(Ctr[i], ", ");
 
 		while(str_ctr != NULL){
-			split_ctr[num++] = str_ctr;
+			split_ctr[num][0] = str_ctr[0];
+			split_ctr[num++][1] = str_ctr[1];
 			str_ctr = strtok(NULL, ", ");
 		}
 
-		printf("IV: ");
+		/*printf("IV: ");
 		for(int m=0; m<16; m++){
 			if(split_ctr[m] != NULL){
 				printf("%s ", split_ctr[m]);
 			}
 		}
-		printf("\n");
+		printf("\n");*/
 
 		//**********string to Hex**********//
 		for(int b = 0 ; b < 16; b++){
@@ -358,17 +366,18 @@ void LEA_CTR_192(const char *inputFileName, const char *outputFileName){
 		str_Key = strtok(Key[i], ", ");
 
 		while(str_Key != NULL){
-			split_Key[num++] = str_Key;
+			split_Key[num][0] = str_Key[0];
+			split_Key[num++][1] = str_Key[1];
 			str_Key = strtok(NULL, ", ");
 		}
 
-		printf("Key: ");
+		/*printf("Key: ");
 		for(int m=0; m<24; m++){
 			if(split_Key[m] != NULL){
 				printf("%s ", split_Key[m]);
 			}
 		}
-		printf("\n");
+		printf("\n");*/
 
 		//**********string to Hex**********//
 		for(int b = 0 ; b < 24; b++){
@@ -402,9 +411,9 @@ void LEA_CTR_256(const char *inputFileName, const char *outputFileName){
     char *str_Key = NULL;
     char *str_ctr = NULL;
 
-    unsigned char *split_PlainText[TEXT_BYTE_LENGTH] = {NULL, };
-    unsigned char *split_Key[16] = {NULL, };
-    unsigned char *split_ctr[16] = {NULL, };
+    unsigned char split_PlainText[TEXT_BYTE_LENGTH][2] = {NULL, };
+    unsigned char split_Key[16][2] = {NULL, };
+    unsigned char split_ctr[16][2] = {NULL, };
 
     unsigned char Hex_Plain[TEXT_BYTE_LENGTH] = {NULL, };
     unsigned char Hex_Key[16] = {NULL, };
@@ -431,7 +440,7 @@ void LEA_CTR_256(const char *inputFileName, const char *outputFileName){
 	fgets(PlainText[0], MAX_MARKER_LEN, fp_in); //skip line
 	for(int i=0; i<PlainNum; i++){
 		fgets(PlainText[i], MAX_MARKER_LEN, fp_in);
-		printf("%s", PlainText[i]);
+		//printf("%s", PlainText[i]);
 	}
 	FindMarker(fp_in, "ctr");
 	fscanf(fp_in, " %c %d", &str, &IVNum);
@@ -439,7 +448,7 @@ void LEA_CTR_256(const char *inputFileName, const char *outputFileName){
 	fgets(Ctr[0], MAX_MARKER_LEN, fp_in); //skip line
 	for(int i=0; i<IVNum; i++){
 		fgets(Ctr[i], MAX_MARKER_LEN, fp_in);
-		printf("%s", Ctr[i]);
+		//printf("%s", Ctr[i]);
 	}
 
 	FindMarker(fp_in, "key");
@@ -448,7 +457,7 @@ void LEA_CTR_256(const char *inputFileName, const char *outputFileName){
 	fgets(Key[0], MAX_MARKER_LEN, fp_in); //skip line
 	for(int i=0; i<KeyNum; i++){
 		fgets(Key[i], MAX_MARKER_LEN, fp_in);
-		printf("%s", Key[i]);
+		//printf("%s", Key[i]);
 	}
 
 	if(PlainNum != KeyNum && KeyNum != IVNum)
@@ -468,16 +477,20 @@ void LEA_CTR_256(const char *inputFileName, const char *outputFileName){
 		str_Plain = strtok(PlainText[i], ", ");
 
 		while(str_Plain != NULL){
-			split_PlainText[num++] = str_Plain;
+			split_PlainText[num][0] = str_Plain[0];
+			split_PlainText[num++][1] = str_Plain[1];
 			str_Plain = strtok(NULL, ", ");
 		}
 
-		printf("Plain: ");
+		/*printf("Plain: ");
 		for(int m=0; m<TEXT_BYTE_LENGTH; m++){
-			if(split_PlainText[m] != NULL){
-				printf("%s ", split_PlainText[m]);
-			}
-		}printf("\n");
+			for(int n = 0 ; n < 2 ; n++)
+			{
+				if(split_PlainText[m][n] != NULL){
+					printf("%c", split_PlainText[m][n]);
+				}
+			}printf(" ");
+		}printf("\n");*/
 
 		//**********string to Hex**********//
 		for(int b = 0 ; b < TEXT_BYTE_LENGTH; b++){
@@ -485,10 +498,10 @@ void LEA_CTR_256(const char *inputFileName, const char *outputFileName){
 		   Hex_Plain[b] = strtol(temp_arr, NULL, 16);
 		}
 
-		printf("ttt1: ");
+		/*printf("ttt1: ");
 		for(int mm = 0; mm<TEXT_BYTE_LENGTH; mm++)
 			printf("%02x ", Hex_Plain[mm]);
-		printf("\n");
+		printf("\n");*/
 
 		num = 0;
 
@@ -505,17 +518,22 @@ void LEA_CTR_256(const char *inputFileName, const char *outputFileName){
 		str_ctr = strtok(Ctr[i], ", ");
 
 		while(str_ctr != NULL){
-			split_ctr[num++] = str_ctr;
+			split_ctr[num][0] = str_ctr[0];
+			split_ctr[num++][1] = str_ctr[1];
 			str_ctr = strtok(NULL, ", ");
 		}
 
-		printf("ctr: ");
+		/*printf("ctr: ");
 		for(int m=0; m<16; m++){
-			if(split_ctr[m] != NULL){
-				printf("%s ", split_ctr[m]);
+			for(int n = 0 ; n < 2 ; n++)
+			{
+				if(split_ctr[m][n] != NULL){
+					printf("%c", split_ctr[m][n]);
+				}
 			}
+			printf(" ");
 		}
-		printf("\n");
+		printf("\n");*/
 
 		//**********string to Hex**********//
 		for(int b = 0 ; b < 16; b++){
@@ -538,33 +556,38 @@ void LEA_CTR_256(const char *inputFileName, const char *outputFileName){
 		str_Key = strtok(Key[i], ", ");
 
 		while(str_Key != NULL){
-			split_Key[num++] = str_Key;
+			split_Key[num][0] = str_Key[0];
+			split_Key[num++][1] = str_Key[1];
 			str_Key = strtok(NULL, ", ");
 		}
 
-		printf("ttt2: ");
+		/*printf("ttt2: ");
 		for(int mm = 0; mm<TEXT_BYTE_LENGTH; mm++)
 			printf("%02x ", Hex_Plain[mm]);
 		printf("\n");
 
 		printf("Key: ");
 		for(int m=0; m<32; m++){
-			if(split_Key[m] != NULL){
-				printf("%s ", split_Key[m]);
+			for(int n = 0 ; n < 2 ; n++)
+			{
+				if(split_Key[m][n] != NULL){
+					printf("%c", split_Key[m][n]);
+				}
 			}
+			printf(" ");
 		}
-		printf("\n");
+		printf("\n");*/
 
 		//**********string to Hex**********//
-		for(int keyb = 0 ; keyb < 32; keyb++){
+		for(int keyb = 0; keyb < 16; keyb++){
 		   unsigned char temp_key[3] = {split_Key[keyb][0], split_Key[keyb][1], '\0'};
 		   Hex_Key[keyb] = strtol(temp_key, NULL, 16);
 		}
 
-		printf("ttt2: ");
+		/*printf("ttt2: ");
 		for(int mm = 0; mm<TEXT_BYTE_LENGTH; mm++)
 			printf("%02x ", Hex_Plain[mm]);
-		printf("\n");
+		printf("\n");*/
 
 		CTR_enc_256(Hex_Plain, resultCipher, TEXT_BYTE_LENGTH, Hex_Key, Hex_ctr);
 
@@ -592,9 +615,9 @@ void LEA_CBC_128(const char *inputFileName, const char *outputFileName){
     char *str_Key = NULL;
     char *str_IV = NULL;
 
-    unsigned char *split_PlainText[TEXT_BYTE_LENGTH] = {NULL, };
-    unsigned char *split_Key[16] = {NULL, };
-    unsigned char *split_IV[16] = {NULL, };
+    unsigned char split_PlainText[TEXT_BYTE_LENGTH][2] = {NULL, };
+    unsigned char split_Key[16][2] = {NULL, };
+    unsigned char split_IV[16][2] = {NULL, };
 
     unsigned char Hex_Plain[TEXT_BYTE_LENGTH] = {NULL, };
     unsigned char Hex_Key[16] = {NULL, };
@@ -658,7 +681,8 @@ void LEA_CBC_128(const char *inputFileName, const char *outputFileName){
 		str_Plain = strtok(PlainText[i], ", ");
 
 		while(str_Plain != NULL){
-			split_PlainText[num++] = str_Plain;
+			split_PlainText[num][0] = str_Plain[0];
+			split_PlainText[num++][1] = str_Plain[1];
 			str_Plain = strtok(NULL, ", ");
 		}
 
@@ -691,7 +715,8 @@ void LEA_CBC_128(const char *inputFileName, const char *outputFileName){
 		str_IV = strtok(IV[i], ", ");
 
 		while(str_IV != NULL){
-			split_IV[num++] = str_IV;
+			split_IV[num][0] = str_IV[0];
+			split_IV[num++][1] = str_IV[1];
 			str_IV = strtok(NULL, ", ");
 		}
 
@@ -724,7 +749,8 @@ void LEA_CBC_128(const char *inputFileName, const char *outputFileName){
 		str_Key = strtok(Key[i], ", ");
 
 		while(str_Key != NULL){
-			split_Key[num++] = str_Key;
+			split_Key[num][0] = str_Key[0];
+			split_Key[num++][1] = str_Key[1];
 			str_Key = strtok(NULL, ", ");
 		}
 
@@ -769,9 +795,9 @@ void LEA_CBC_192(const char *inputFileName, const char *outputFileName){
     char *str_Key = NULL;
     char *str_IV = NULL;
 
-    unsigned char *split_PlainText[TEXT_BYTE_LENGTH] = {NULL, };
-    unsigned char *split_Key[32] = {NULL, };
-    unsigned char *split_IV[16] = {NULL, };
+    unsigned char split_PlainText[TEXT_BYTE_LENGTH][2] = {NULL, };
+    unsigned char split_Key[32][2] = {NULL, };
+    unsigned char split_IV[16][2] = {NULL, };
 
     unsigned char Hex_Plain[TEXT_BYTE_LENGTH] = {NULL, };
     unsigned char Hex_Key[32] = {NULL, };
@@ -835,7 +861,8 @@ void LEA_CBC_192(const char *inputFileName, const char *outputFileName){
 		str_Plain = strtok(PlainText[i], ", ");
 
 		while(str_Plain != NULL){
-			split_PlainText[num++] = str_Plain;
+			split_PlainText[num][0] = str_Plain[0];
+			split_PlainText[num++][1] = str_Plain[1];
 			str_Plain = strtok(NULL, ", ");
 		}
 
@@ -868,7 +895,8 @@ void LEA_CBC_192(const char *inputFileName, const char *outputFileName){
 		str_IV = strtok(IV[i], ", ");
 
 		while(str_IV != NULL){
-			split_IV[num++] = str_IV;
+			split_IV[num][0] = str_IV[0];
+			split_IV[num++][1] = str_IV[1];
 			str_IV = strtok(NULL, ", ");
 		}
 
@@ -901,7 +929,8 @@ void LEA_CBC_192(const char *inputFileName, const char *outputFileName){
 		str_Key = strtok(Key[i], ", ");
 
 		while(str_Key != NULL){
-			split_Key[num++] = str_Key;
+			split_Key[num][0] = str_Key[0];
+			split_Key[num++][1] = str_Key[1];
 			str_Key = strtok(NULL, ", ");
 		}
 
@@ -946,9 +975,9 @@ void LEA_CBC_256(const char *inputFileName, const char *outputFileName){
     char *str_Key = NULL;
     char *str_IV = NULL;
 
-    unsigned char *split_PlainText[TEXT_BYTE_LENGTH] = {NULL, };
-    unsigned char *split_Key[32] = {NULL, };
-    unsigned char *split_IV[16] = {NULL, };
+    unsigned char split_PlainText[TEXT_BYTE_LENGTH][2] = {NULL, };
+    unsigned char split_Key[32][2] = {NULL, };
+    unsigned char split_IV[16][2] = {NULL, };
 
     unsigned char Hex_Plain[TEXT_BYTE_LENGTH] = {NULL, };
     unsigned char Hex_Key[32] = {NULL, };
@@ -1012,7 +1041,8 @@ void LEA_CBC_256(const char *inputFileName, const char *outputFileName){
 		str_Plain = strtok(PlainText[i], ", ");
 
 		while(str_Plain != NULL){
-			split_PlainText[num++] = str_Plain;
+			split_PlainText[num][0] = str_Plain[0];
+			split_PlainText[num++][1] = str_Plain[1];
 			str_Plain = strtok(NULL, ", ");
 		}
 
@@ -1045,7 +1075,8 @@ void LEA_CBC_256(const char *inputFileName, const char *outputFileName){
 		str_IV = strtok(IV[i], ", ");
 
 		while(str_IV != NULL){
-			split_IV[num++] = str_IV;
+			split_IV[num][0] = str_IV[0];
+			split_IV[num++][1] = str_IV[1];
 			str_IV = strtok(NULL, ", ");
 		}
 
@@ -1078,7 +1109,8 @@ void LEA_CBC_256(const char *inputFileName, const char *outputFileName){
 		str_Key = strtok(Key[i], ", ");
 
 		while(str_Key != NULL){
-			split_Key[num++] = str_Key;
+			split_Key[num][0] = str_Key[0];
+			split_Key[num++][1] = str_Key[1];
 			str_Key = strtok(NULL, ", ");
 		}
 
@@ -1113,10 +1145,10 @@ void LEA_128(const char *inputFileName, const char *outputFileName){
 	unsigned char ct[16] = {0x00, };
 
 	unsigned char Key[200][MAX_MARKER_LEN];
-	unsigned char *split_Key[16] = {NULL, };
+	unsigned char split_Key[16][2] = {NULL, };
 	unsigned char Hex_Key[16] = {NULL, };
 	unsigned char PlainText[200][MAX_MARKER_LEN];
-	unsigned char *split_PlainText[16] = {NULL, };
+	unsigned char split_PlainText[16][2] = {NULL, };
 	unsigned char Hex_Plain[16] = {NULL, };
 	char str;
 	char *str_Key = NULL;
@@ -1169,7 +1201,8 @@ void LEA_128(const char *inputFileName, const char *outputFileName){
 		str_Plain = strtok(PlainText[i], ", ");
 
 		while(str_Plain != NULL){
-			split_PlainText[num++] = str_Plain;
+			split_PlainText[num][0] = str_Plain[0];
+			split_PlainText[num++][1] = str_Plain[1];
 			str_Plain = strtok(NULL, ", ");
 		}
 
@@ -1201,7 +1234,8 @@ void LEA_128(const char *inputFileName, const char *outputFileName){
 		str_Key = strtok(Key[i], ", ");
 
 		while(str_Key != NULL){
-			split_Key[num++] = str_Key;
+			split_Key[num][0] = str_Key[0];
+			split_Key[num++][1] = str_Key[1];
 			str_Key = strtok(NULL, ", ");
 		}
 
@@ -1234,10 +1268,10 @@ void LEA_192(const char *inputFileName, const char *outputFileName){
 	unsigned char ct[16] = {0x00, };
 
 	unsigned char Key[200][MAX_MARKER_LEN];
-	unsigned char *split_Key[32] = {NULL, };
+	unsigned char split_Key[32][2] = {NULL, };
 	unsigned char Hex_Key[32] = {NULL, };
 	unsigned char PlainText[200][MAX_MARKER_LEN];
-	unsigned char *split_PlainText[16] = {NULL, };
+	unsigned char split_PlainText[16][2] = {NULL, };
 	unsigned char Hex_Plain[16] = {NULL, };
 	char str;
 	char *str_Key = NULL;
@@ -1290,7 +1324,8 @@ void LEA_192(const char *inputFileName, const char *outputFileName){
 		str_Plain = strtok(PlainText[i], ", ");
 
 		while(str_Plain != NULL){
-			split_PlainText[num++] = str_Plain;
+			split_PlainText[num][0] = str_Plain[0];
+			split_PlainText[num++][1] = str_Plain[1];
 			str_Plain = strtok(NULL, ", ");
 		}
 
@@ -1322,7 +1357,8 @@ void LEA_192(const char *inputFileName, const char *outputFileName){
 		str_Key = strtok(Key[i], ", ");
 
 		while(str_Key != NULL){
-			split_Key[num++] = str_Key;
+			split_Key[num][0] = str_Key[0];
+			split_Key[num++][1] = str_Key[1];
 			str_Key = strtok(NULL, ", ");
 		}
 
@@ -1355,10 +1391,10 @@ void LEA_256(const char *inputFileName, const char *outputFileName){
 	unsigned char ct[16] = {0x00, };
 
 	unsigned char Key[200][MAX_MARKER_LEN];
-	unsigned char *split_Key[32] = {NULL, };
+	unsigned char split_Key[32][2] = {NULL, };
 	unsigned char Hex_Key[32] = {NULL, };
 	unsigned char PlainText[200][MAX_MARKER_LEN];
-	unsigned char *split_PlainText[16] = {NULL, };
+	unsigned char split_PlainText[16][2] = {NULL, };
 	unsigned char Hex_Plain[16] = {NULL, };
 	char str;
 	char *str_Key = NULL;
@@ -1411,7 +1447,8 @@ void LEA_256(const char *inputFileName, const char *outputFileName){
 		str_Plain = strtok(PlainText[i], ", ");
 
 		while(str_Plain != NULL){
-			split_PlainText[num++] = str_Plain;
+			split_PlainText[num][0] = str_Plain[0];
+			split_PlainText[num++][1] = str_Plain[1];
 			str_Plain = strtok(NULL, ", ");
 		}
 
@@ -1443,7 +1480,8 @@ void LEA_256(const char *inputFileName, const char *outputFileName){
 		str_Key = strtok(Key[i], ", ");
 
 		while(str_Key != NULL){
-			split_Key[num++] = str_Key;
+			split_Key[num][0] = str_Key[0];
+			split_Key[num++][1] = str_Key[1];
 			str_Key = strtok(NULL, ", ");
 		}
 
@@ -1501,32 +1539,17 @@ int main()
 		resultCipher[i] = 0;
 	}
 
-    int num = 1;
-    int config_mod = 1;
+    int num = 0;
+    int config_mod = 0;
 
     FILE *fp_in, *output_file;
 
-    char *HashName[3] = {"LEA-128", "LEA-192", "LEA-256"};
+    char *HashName[9] = {"LEA-128", "LEA-192", "LEA-256", "LEA_CBC-128", "LEA_CBC-192", "LEA_CBC-256", "LEA_CTR-128", "LEA_CTR-192", "LEA_CTR-256"};
 	char inputFileAddress[256], outputFileAddress[256];
 	char *pStr;
 	char strTemp[255];
 
-	for(int i=0; i<3; i++){
-		if(config_mod == 0){
-			HashName[0] = "LEA-128";
-			HashName[1] = "LEA-192";
-			HashName[2] = "LEA-256";
-		}else if(config_mod == 1){
-			HashName[0] = "LEA_CBC-128";
-			HashName[1] = "LEA_CBC-192";
-			HashName[2] = "LEA_CBC-256";
-		}else if(config_mod == 2){
-			HashName[0] = "LEA_CTR-128";
-			HashName[1] = "LEA_CTR-192";
-			HashName[2] = "LEA_CTR-256";
-		}else {
-			printf("ERROR!!");
-		}
+	for(int i=0; i<9; i++){
 
 		sprintf(inputFileAddress, "BlockCipher_test/%s.txt", HashName[i]);
 		sprintf(outputFileAddress, "BlockCipher_test/%s_rsp.txt", HashName[i]);
@@ -1539,49 +1562,36 @@ int main()
 		pStr = fgets(strTemp, sizeof(strTemp), fp_in);
 		printf("%s", pStr);
 
-		if(config_mod == 0){
-			if(!strcmp(pStr, "Algo_ID = LEA-128\n")){
-				printf("LEA128\n");
-				LEA_128(inputFileAddress, outputFileAddress);
-			}else if(!strcmp(pStr, "Algo_ID = LEA-192\n")){
-				printf("LEA192\n");
-				LEA_192(inputFileAddress, outputFileAddress);
-			}else if(!strcmp(pStr, "Algo_ID = LEA-256\n")){
-				printf("LEA256\n");
-				LEA_256(inputFileAddress, outputFileAddress);
-			}else {
-				printf("Error!\n");
-			}
-		}else if (config_mod == 1){
-			if(!strcmp(pStr, "Algo_ID = LEA-128\n")){
-				printf("LEA_CBC-128\n");
-				LEA_CBC_128(inputFileAddress, outputFileAddress);
-			}else if(!strcmp(pStr, "Algo_ID = LEA-192\n")){
-				printf("LEA_CBC-192\n");
-				LEA_CBC_192(inputFileAddress, outputFileAddress);
-			}else if(!strcmp(pStr, "Algo_ID = LEA-256\n")){
-				printf("LEA_CBC-256\n");
-				LEA_CBC_256(inputFileAddress, outputFileAddress);
-			}else {
-				printf("Error!\n");
-			}
-		}else if (config_mod == 2){
-			if(!strcmp(pStr, "Algo_ID = LEA-128\n")){
-				printf("LEA_CTR-128\n");
-				//LEA_CTR_128(inputFileAddress, outputFileAddress);
-			}else if(!strcmp(pStr, "Algo_ID = LEA-192\n")){
-				printf("LEA_CTR-192\n");
-				//LEA_CTR_192(inputFileAddress, outputFileAddress);
-			}else if(!strcmp(pStr, "Algo_ID = LEA-256\n")){
-				printf("LEA_CTR-256\n");
-				LEA_CTR_256(inputFileAddress, outputFileAddress);
-			}else {
-				printf("Error!\n");
-			}
+		if(!strcmp(pStr, "Algo_ID = LEA-128\n")){
+			printf("LEA128\n");
+			LEA_128(inputFileAddress, outputFileAddress);
+		}else if(!strcmp(pStr, "Algo_ID = LEA-192\n")){
+			printf("LEA192\n");
+			LEA_192(inputFileAddress, outputFileAddress);
+		}else if(!strcmp(pStr, "Algo_ID = LEA-256\n")){
+			printf("LEA256\n");
+			LEA_256(inputFileAddress, outputFileAddress);
+		}else if(!strcmp(pStr, "Algo_ID = LEA_CBC-128\n")){
+			printf("LEA_CBC-128\n");
+			LEA_CBC_128(inputFileAddress, outputFileAddress);
+		}else if(!strcmp(pStr, "Algo_ID = LEA_CBC-192\n")){
+			printf("LEA_CBC-192\n");
+			LEA_CBC_192(inputFileAddress, outputFileAddress);
+		}else if(!strcmp(pStr, "Algo_ID = LEA_CBC-256\n")){
+			printf("LEA_CBC-256\n");
+			LEA_CBC_256(inputFileAddress, outputFileAddress);
+		}else if(!strcmp(pStr, "Algo_ID = LEA_CTR-128\n")){
+			printf("LEA_CTR-128\n");
+			LEA_CTR_128(inputFileAddress, outputFileAddress);
+		}else if(!strcmp(pStr, "Algo_ID = LEA_CTR-192\n")){
+			printf("LEA_CTR-192\n");
+			LEA_CTR_192(inputFileAddress, outputFileAddress);
+		}else if(!strcmp(pStr, "Algo_ID = LEA_CTR-256\n")){
+			printf("LEA_CTR-256\n");
+			LEA_CTR_256(inputFileAddress, outputFileAddress);
 		}else {
-			printf("error!");
+			printf("Error!\n");
 		}
-
 
 	}
 

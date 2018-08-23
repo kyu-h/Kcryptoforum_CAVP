@@ -1,4 +1,4 @@
-#include "LEA_b.h"
+#include "LEA_default.h"
 
 #include <stdio.h>
 #include <stdlib.h>

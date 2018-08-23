@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "LEA_ConfigMode.h"
-#include "LEA_Default.h"
+#include "LEA_g.h"
+#include "LEA_v.h"
 
 #define TEXT_BYTE_LENGTH 64
 #define MAX_MARKER_LEN 4096
@@ -1525,7 +1525,7 @@ int main()
 
 	for(int i=0; i<9; i++){
 		sprintf(inputFileAddress, "BlockCipher_test/%s.txt", HashName[i]);
-		sprintf(outputFileAddress, "BlockCipher_test/%s_rsp.txt", HashName[i]);
+		sprintf(outputFileAddress, "BlockCipher_test/%s_cp.txt", HashName[i]);
 
 		if ( (fp_in = fopen(inputFileAddress, "r")) == NULL ) {
 			printf("Couldn't open <%s> for read\n", inputFileAddress);

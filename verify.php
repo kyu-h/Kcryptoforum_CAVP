@@ -58,13 +58,20 @@
         }
     
         $Cfinal = "";
-        for($i=0; $i<count($Carray); $i++){
-            $Cmiddle = explode('/', $Carray[$i]);
-            
-            $Cfinal .= $Cmiddle[1];
-        }
-        echo $Cfinal."<br>";
     
+        if($algo == "LSH"){
+            for($i=0; $i<count($Carray); $i++){
+                $Cmiddle = explode('/', $Carray[$i]);
+
+                $Cfinal .= $Cmiddle[1];
+            }
+            echo $Cfinal."<br>";    
+        }else {
+            for($i=0; $i<count($Carray); $i++){
+                $Cfinal .= $Carray[$i];
+            }
+            echo $Cfinal."<br>";
+        }
     
         //************gcc compiler*****************//
         putenv("PATH=C:\\Program Files (x86)\\mingw-w64\\i686-7.3.0-posix-dwarf-rt_v5-rev0\\mingw32\\bin");
@@ -98,6 +105,12 @@
         
         var text_rsp = "";
         var text_cp = "";
+        
+        if(text_cp == text_rsp){
+            document.writeln("<br>Perfectly matched!!<br><br>");
+        }else{
+            document.writeln("There are some errors..<br>");
+        }
         
         if(algo == "LSH"){
             console.log("LSH");
@@ -216,11 +229,7 @@
         
         document.writeln("<br><br><br>");
         
-        if(text_cp == text_rsp){
-            document.writeln("Perfectly matched!!<br>");
-        }else{
-            document.writeln("There are some errors..<br>");
-        }
+        
     </script>
 </body>
 </html>

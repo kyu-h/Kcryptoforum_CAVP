@@ -190,7 +190,7 @@ function createFileLEA_CBC128(){
 
     fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA_CBC-128.txt", true);
 
-    fWrite.write("Algo_ID = LEA-128");
+    fWrite.write("Algo_ID = LEA_CBC-128");
     fWrite.write("\r\n");
 
     fWrite.write("PlainText = 100");
@@ -271,7 +271,7 @@ function createFileLEA_CBC192(){
 
     fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA_CBC-192.txt", true);
 
-    fWrite.write("Algo_ID = LEA-192");
+    fWrite.write("Algo_ID = LEA_CBC-192");
     fWrite.write("\r\n");
 
     fWrite.write("PlainText = 100");
@@ -352,7 +352,7 @@ function createFileLEA_CBC256(){
 
     fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA_CBC-256.txt", true);
 
-    fWrite.write("Algo_ID = LEA-256");
+    fWrite.write("Algo_ID = LEA_CBC-256");
     fWrite.write("\r\n");
 
     fWrite.write("PlainText = 100");
@@ -433,7 +433,7 @@ function createFileLEA_CTR128(){
 
     fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA_CTR-128.txt", true);
 
-    fWrite.write("Algo_ID = LEA-128");
+    fWrite.write("Algo_ID = LEA_CTR-128");
     fWrite.write("\r\n");
 
     fWrite.write("PlainText = 100");
@@ -514,7 +514,7 @@ function createFileLEA_CTR192(){
 
     fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA_CTR-192.txt", true);
 
-    fWrite.write("Algo_ID = LEA-192");
+    fWrite.write("Algo_ID = LEA_CTR-192");
     fWrite.write("\r\n");
 
     fWrite.write("PlainText = 100");
@@ -595,7 +595,7 @@ function createFileLEA_CTR256(){
 
     fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA_CTR-256.txt", true);
 
-    fWrite.write("Algo_ID = LEA-256");
+    fWrite.write("Algo_ID = LEA_CTR-256");
     fWrite.write("\r\n");
 
     fWrite.write("PlainText = 100");
