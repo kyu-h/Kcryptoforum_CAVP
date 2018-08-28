@@ -8,8 +8,8 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "lsh.h"
-#include "lsh_def.h"
+#include "a.h"
+#include "d.h"
 
 #define MAX_FILE_NAME_LEN 256
 #define MAX_READ_LEN 3072
@@ -100,7 +100,7 @@ void lsh_test_type2(lsh_type algtype){
 	}
 //C:\\Users\\kyu\\Desktop\\Kcryptoforum_CAVP\\LSH-%d_%d_rsp.txt
 	sprintf(input_file_name, "Hash_test/Request/LSH-%d_%d.req", bits, LSH_GET_HASHBIT(algtype));
-	sprintf(output_file_name, "Hash_test/Facts/LSH-%d_%d.fax", bits, LSH_GET_HASHBIT(algtype));
+	sprintf(output_file_name, "Hash_test/Response/LSH-%d_%d.rsp", bits, LSH_GET_HASHBIT(algtype));
 	input_file = fopen(input_file_name, "r");
 	output_file = fopen(output_file_name, "w");
 	fgets(data, MAX_READ_LEN, input_file);	// remove first line

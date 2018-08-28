@@ -8,7 +8,7 @@ function createFileLEA128(){
 
     var BitsradioVal = $(':radio[name="bits"]:checked').val();
 
-    fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA-128.txt", true);
+    fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\Request\\LEA-128.req", true);
 
     fWrite.write("Algo_ID = LEA-128");
     fWrite.write("\r\n");
@@ -68,7 +68,7 @@ function createFileLEA192(){
 
     var BitsradioVal = $(':radio[name="bits"]:checked').val();
 
-    fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA-192.txt", true);
+    fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\Request\\LEA-192.req", true);
 
     fWrite.write("Algo_ID = LEA-192");
     fWrite.write("\r\n");
@@ -128,7 +128,7 @@ function createFileLEA256(){
 
     var BitsradioVal = $(':radio[name="bits"]:checked').val();
 
-    fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA-256.txt", true);
+    fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\Request\\LEA-256.req", true);
 
     fWrite.write("Algo_ID = LEA-256");
     fWrite.write("\r\n");
@@ -188,7 +188,7 @@ function createFileLEA_CBC128(){
 
     var BitsradioVal = $(':radio[name="bits"]:checked').val();
 
-    fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA_CBC-128.txt", true);
+    fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\Request\\LEA_CBC-128.req", true);
 
     fWrite.write("Algo_ID = LEA_CBC-128");
     fWrite.write("\r\n");
@@ -269,7 +269,7 @@ function createFileLEA_CBC192(){
 
     var BitsradioVal = $(':radio[name="bits"]:checked').val();
 
-    fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA_CBC-192.txt", true);
+    fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\Request\\LEA_CBC-192.req", true);
 
     fWrite.write("Algo_ID = LEA_CBC-192");
     fWrite.write("\r\n");
@@ -350,7 +350,7 @@ function createFileLEA_CBC256(){
 
     var BitsradioVal = $(':radio[name="bits"]:checked').val();
 
-    fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA_CBC-256.txt", true);
+    fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\Request\\LEA_CBC-256.req", true);
 
     fWrite.write("Algo_ID = LEA_CBC-256");
     fWrite.write("\r\n");
@@ -431,7 +431,7 @@ function createFileLEA_CTR128(){
 
     var BitsradioVal = $(':radio[name="bits"]:checked').val();
 
-    fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA_CTR-128.txt", true);
+    fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\Request\\LEA_CTR-128.req", true);
 
     fWrite.write("Algo_ID = LEA_CTR-128");
     fWrite.write("\r\n");
@@ -512,7 +512,7 @@ function createFileLEA_CTR192(){
 
     var BitsradioVal = $(':radio[name="bits"]:checked').val();
 
-    fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA_CTR-192.txt", true);
+    fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\Request\\LEA_CTR-192.req", true);
 
     fWrite.write("Algo_ID = LEA_CTR-192");
     fWrite.write("\r\n");
@@ -593,7 +593,7 @@ function createFileLEA_CTR256(){
 
     var BitsradioVal = $(':radio[name="bits"]:checked').val();
 
-    fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA_CTR-256.txt", true);
+    fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\Request\\LEA_CTR-256.req", true);
 
     fWrite.write("Algo_ID = LEA_CTR-256");
     fWrite.write("\r\n");

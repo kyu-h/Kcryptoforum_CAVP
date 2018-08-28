@@ -1524,8 +1524,8 @@ int main()
 	char strTemp[255];
 
 	for(int i=0; i<9; i++){
-		sprintf(inputFileAddress, "BlockCipher_test/%s.txt", HashName[i]);
-		sprintf(outputFileAddress, "BlockCipher_test/%s_rsp.txt", HashName[i]);
+		sprintf(inputFileAddress, "BlockCipher_test/Request/%s.req", HashName[i]);
+		sprintf(outputFileAddress, "BlockCipher_test/Facts/%s.fax", HashName[i]);
 
 		if ( (fp_in = fopen(inputFileAddress, "r")) == NULL ) {
 			printf("Couldn't open <%s> for read\n", inputFileAddress);

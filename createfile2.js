@@ -8,7 +8,7 @@ function createFile256_224_(){
 
     var BitsradioVal = $(':radio[name="bits"]:checked').val();
 
-    fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\Hash_test\\LSH-256_224.txt", true);
+    fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\Hash_test\\Request\\LSH-256_224.req", true);
 
     fWrite.write("Algo_ID = LSH-" + BitsradioVal);
     fWrite.write("\r\n");
@@ -69,7 +69,7 @@ function createFile256_256_(){
 
     var BitsradioVal = $(':radio[name="bits"]:checked').val();
 
-    fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\Hash_test\\LSH-256_256.txt", true);
+    fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\Hash_test\\Request\\LSH-256_256.req", true);
 
     fWrite.write("Algo_ID = LSH-" + BitsradioVal);
     fWrite.write("\r\n");
@@ -130,7 +130,7 @@ function createFile512_224_(){
 
     var BitsradioVal = $(':radio[name="bits"]:checked').val();
 
-    fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\Hash_test\\LSH-512_224.txt", true);
+    fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\Hash_test\\Request\\LSH-512_224.req", true);
 
     fWrite.write("Algo_ID = LSH-" + BitsradioVal);
     fWrite.write("\r\n");
@@ -191,7 +191,7 @@ function createFile512_256_(){
 
     var BitsradioVal = $(':radio[name="bits"]:checked').val();
 
-    fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\Hash_test\\LSH-512_256.txt", true);
+    fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\Hash_test\\Request\\LSH-512_256.req", true);
 
     fWrite.write("Algo_ID = LSH-" + BitsradioVal);
     fWrite.write("\r\n");
@@ -252,7 +252,7 @@ function createFile512_384_(){
 
     var BitsradioVal = $(':radio[name="bits"]:checked').val();
 
-    fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\Hash_test\\LSH-512_384.txt", true);
+    fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\Hash_test\\Request\\LSH-512_384.req", true);
 
     fWrite.write("Algo_ID = LSH-" + BitsradioVal);
     fWrite.write("\r\n");
@@ -313,7 +313,7 @@ function createFile512_512_(){
 
     var BitsradioVal = $(':radio[name="bits"]:checked').val();
 
-    fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\Hash_test\\LSH-512_512.txt", true);
+    fWrite = fileObject.CreateTextFile("C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\Hash_test\\Request\\LSH-512_512.req", true);
 
     fWrite.write("Algo_ID = LSH-" + BitsradioVal);
     fWrite.write("\r\n");

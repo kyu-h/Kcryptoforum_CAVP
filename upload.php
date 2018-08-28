@@ -63,22 +63,22 @@
 
     <br><br>
 
-    <p id="demo">파일은 모두 압축 후 압축 파일 '.zip'를 올려주시기 바랍니다. 만약 header file이 포함 된 파일의 경우 header file도 올리셔야합니다. </p>
+    <p id="demo">Please compress all the files and then upload the compressed file '.zip'. If the file contains a header file, you must also upload the header file. </p>
 
     <form name="uploadForm" id="uploadForm_LSH" method="post" action="upload_process.php?algo=LSH" enctype="multipart/form-data" onsubmit="return formSubmit_LSH(this);">
         <div>
-            <label for="upfile">첨부파일</label>
+            <label for="upfile">Attachments</label>
             <input type="file" name="upfile" id="upfile" />
         </div>
-        <input type="submit" value="업로드" />
+        <input type="submit" value="Upload" />
     </form>
 
     <form name="uploadForm" id="uploadForm_LEA" method="post" action="upload_process.php?algo=LEA" enctype="multipart/form-data" onsubmit="return formSubmit_LEA(this);" style="display: none;">
         <div>
-            <label for="upfile2">첨부파일</label>
+            <label for="upfile2">Attachments</label>
             <input type="file" name="upfile2" id="upfile2" />
         </div>
-        <input type="submit" value="업로드" />
+        <input type="submit" value="Upload" />
     </form>
     
     <script type="text/javascript">

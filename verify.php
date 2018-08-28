@@ -29,7 +29,7 @@
         $extract = $zipfile->extract(PCLZIP_OPT_PATH, './');
         
         if(!empty($extract)){
-            echo "LSH_NEW.zip extract succesfully<br>";
+            echo "LSH_NEW.zip extract succesfully.<br>";
         }else{
             echo "failed to extract<br>";
         } 
@@ -61,11 +61,9 @@
     
         if($algo == "LSH"){
             for($i=0; $i<count($Carray); $i++){
-                $Cmiddle = explode('/', $Carray[$i]);
-
-                $Cfinal .= $Cmiddle[1];
+                $Cfinal .= $Carray[$i];
             }
-            echo $Cfinal."<br>";    
+            echo $Cfinal."<br>"; 
         }else {
             for($i=0; $i<count($Carray); $i++){
                 $Cfinal .= $Carray[$i];
@@ -114,9 +112,9 @@
         
         if(algo == "LSH"){
             console.log("LSH");
-            var input = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\Hash_test\\LSH-"+bits+".txt";
-            var filename_rsp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\Hash_test\\LSH-"+bits+"_rsp.txt";
-            var filename_cp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\Hash_test\\LSH-"+bits+"_cp.txt";
+            var input = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\Hash_test\\Request\\LSH-"+bits+".req";
+            var filename_rsp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\Hash_test\\Facts\\LSH-"+bits+".fax";
+            var filename_cp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\Hash_test\\Response\\LSH-"+bits+".rsp";
             
             document.writeln("<br /><br />");
             document.writeln("Input file<br>");
@@ -134,9 +132,9 @@
             });    
         }else if (algo == "LEA" && config == "ECB"){
             console.log("LEA");
-            var input = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA-"+bits+".txt";
-            var filename_rsp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA-"+bits+"_rsp.txt";
-            var filename_cp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA-"+bits+"_cp.txt";
+            var input = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\Request\\LEA-"+bits+".req";
+            var filename_rsp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\Facts\\LEA-"+bits+".fax";
+            var filename_cp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\Response\\LEA-"+bits+".rsp";
             
             document.writeln("Input file<br>");
             inputFile(input);
@@ -153,9 +151,9 @@
             }); 
         }else if (algo == "LEA" && config == "CBC"){
             console.log("LEA");
-            var input = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA-"+bits+".txt";
-            var filename_rsp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA_CBC-"+bits+"_rsp.txt";
-            var filename_cp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA_CBC-"+bits+"_cp.txt";
+            var input = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\Request\\LEA_CBC-"+bits+".req";
+            var filename_rsp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\Facts\\LEA_CBC-"+bits+".fax";
+            var filename_cp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\Response\\LEA_CBC-"+bits+".rsp";
             
             document.writeln("Input file<br>");
             inputFile(input);
@@ -172,9 +170,9 @@
             }); 
         }else if (algo == "LEA" && config == "CTR"){
             console.log("LEA");
-            var input = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA-"+bits+".txt";
-            var filename_rsp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA_CTR-"+bits+"_rsp.txt";
-            var filename_cp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\LEA_CTR-"+bits+"_cp.txt";
+            var input = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\Request\\LEA_CTR-"+bits+".req";
+            var filename_rsp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\Facts\\LEA_CTR-"+bits+".fax";
+            var filename_cp = "C:\\Bitnami\\wampstack-7.1.20-1\\apache2\\htdocs\\upload\\application\\up\\BlockCipher_test\\Response\\LEA_CTR-"+bits+".rsp";
             
             document.writeln("Input file<br>");
             inputFile(input);

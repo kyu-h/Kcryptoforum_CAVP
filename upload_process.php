@@ -43,8 +43,8 @@
 
                 mysqli_stmt_close($stmt);
 
-                echo"<h3>파일 업로드 성공</h3>";
-                echo '<a href="./verify.php?algo=LSH">확인하기</a>';
+                echo"<h3>Success for file upload</h3>";
+                echo '<a href="./verify.php?algo=LSH">Confirm</a>';
             }
         } else {
             echo "<h3>파일이 업로드 되지 않았습니다.</h3>";
@@ -83,8 +83,8 @@
 
                 mysqli_stmt_close($stmt);
 
-                echo"<h3>파일 업로드 성공</h3>";
-                echo '<a href="./verify.php?algo=LEA">확인하기</a>';
+                echo"<h3>Success for file upload</h3>";
+                echo '<a href="./verify.php?algo=LEA">Confirm</a>';
             }
         } else {
             echo "<h3>파일이 업로드 되지 않았습니다.</h3>";
