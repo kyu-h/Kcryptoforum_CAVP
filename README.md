@@ -19,4 +19,4 @@ Can get the LSH original source code at <a href="https://seed.kisa.or.kr/iwt/ko/
 6) Compare the server output file with the user output file and export the same or wrong output. <br>
 7) On the screen, three output files are displayed: input file, output (in order of server and user).<br>
 
-Implementation video <a href="https://youtu.be/RqbyueLEED8" target="_blank">Youtube link</a>
+Implementation video <a href="https://www.youtube.com/watch?v=e-cjDbVDOcw&feature=youtu.be" target="_blank">Youtube link</a>
